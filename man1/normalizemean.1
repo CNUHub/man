@@ -1,0 +1,127 @@
+.\" @(#)normalizemean.1;
+.TH NORMALIZEMEAN 1 "February 4 1994" "CNU Tools" "CNU Tools"
+.SH NAME
+normalizemean \- normalize Analyze image to have a standard mean
+.SH SYNOPSIS
+.PD 0
+.B normalizemean
+.I infile
+.I outfile
+[
+.BI \-t \ thresh
+]
+[
+.BI \-tf \ threshfactor
+]
+[
+.BI \-m \ mean
+]
+[
+.B \-notran
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B normalizemean
+scales image to a given mean. Values below given thresh are ignored in
+calculating means and set to 0 on output. The image is also translated
+by minus thresh removing gap between zero and thresh.
+.SH OPTIONS
+.TP
+.B infile
+input ANALYZE or ECAT file name with or without .img extension
+.TP
+.B outfile
+output ANALYZE/ECAT file name with or without .img extension
+.TP
+.BI \-t \ thresh
+ignores values below this value when calculating input image mean and
+translates this value to zero.
+.TP
+.BI \-tf \ threshfactor
+calculate above thresh as (maximum * threshfactor)
+.TP
+.BI \-m \ mean
+scales pixels above thresh to have this mean value(defaults to 1000)
+.TP
+.B \-notran
+do not translate image by thresh
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR addimgs (1),
+.BR diff2imgs (1),
+.BR ecat2analyze (1),
+.BR cnuintro (3)

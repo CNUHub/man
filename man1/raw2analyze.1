@@ -1,0 +1,130 @@
+.\" @(#)raw2analyze.1;
+.TH RAW2ANALYZE 1 "4 June 2001" "CNU Tools" "CNU Tools"
+.SH NAME
+raw2analyze \- raw to ANALYZE file conversion
+.SH SYNOPSIS
+.PD 0
+.B raw2analyze
+.I infile
+.I outfile
+.LP
+[
+.BI \-x \ xdim
+]
+[
+.BI \-y \ ydim
+]
+[
+.BI \-z \ zdim
+]
+[
+.BI \-i \ idim
+]
+.LP
+[
+.BI \-xr \ xres
+]
+[
+.BI \-yr \ yres
+]
+[
+.BI \-zr \ zres
+]
+[
+.BI \-ir \ ires
+]
+.LP
+[
+.BI \-xi \ xinc
+]
+[
+.BI \-yi \ yinc
+]
+[
+.BI \-zi \ zinc
+]
+[
+.BI \-ii \ iinc
+]
+.LP
+[
+.BI \-wr \ word_res
+]
+.LP
+[
+.BI \-skip \ skip_pixels
+]
+[
+.B \-swap
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-short
+|
+.B \-ushort
+|
+.B \-int
+|
+.B \-uint
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-tran
+|
+.B \-sag
+|
+.B \-cor
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B raw2analyze
+converts from a raw file format to ANALYZE file format.
+.SH OPTIONS
+.TP
+.B infile
+input complete raw file name
+.TP
+.B outfile
+output ANALYZE file name without .img or .hdr extension
+.TP
+.I xdim, ydim, zdim, idim
+x, y, z, and i dimensions of file(defaults to 256, 256, 1, and 1)
+.TP
+.I xres, yres, zres, ires
+x, y, z, and i resolutions of file in meters(defaults to 1, 1, 1, and 1)
+.TP
+.I xinc, yinc, zinc, iinc
+number of bytes to skip when incrementing to next voxel in given dimension.
+This allows flexibility in how input file voxels are spaced.
+Defaults is calculated using dimensions, word size and assuming x increments
+the fastest, then y, z and i with no extra fill or header bytes.
+.TP
+.BI -wr \ word_res
+word resolution. Conversion factor to convert each word to appropriate units
+(defaults to 1)
+.TP
+.BI \-skip \ skip_pixels
+number of pixels to skip at beginning of file(defaults to 0)
+.TP
+.B \-swap
+byte swap pixels(currently valid only for type short)
+.TP
+.B \-char, \-uchar, \-short, \-ushort, \-int, \-uint, \-float, \-double
+input data type(defaults to uchar - unsigned character)
+.TP
+.B \-tran, \-sag, \-cor
+flag output ANALYZE image as transverse, sagital or coronal image
+(defaults to transverse)
+.SH "SEE ALSO"
+.BR cnuintro (3),
+.BR ecat2analyze (1),
+.BR analyze2ecat (1)

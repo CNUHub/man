@@ -1,0 +1,214 @@
+.\" @(#)pcorrelate.1;
+.TH PCORRELATE 1 "21 January 2003" "CNU Tools" "CNU Tools"
+.SH NAME
+pcorrelate \- calculates pixelwise linear correlations coefficients
+.SH SYNOPSIS
+.PD 0
+.B pcorrelate
+.BI \-list \ listfile
+|
+.I infile1
+[
+.I infile2
+[
+.I infile3
+[...]
+]
+]
+.LP
+.BI \-p \ x,y,z,i
+|
+.BI \-yf \ y_file
+[
+.B \-print_list
+]
+.LP
+.BI \-o \ outfile
+.LP
+[
+.BI \-templatelist \ templatelistfile
+|
+.BI \-template \ template1
+[
+.I template2
+[
+.I template3
+[...]
+]
+]
+[
+.BI \-mincnt \ mincount
+]
+]
+.LP
+[
+.B \-anova
+|
+.B \-spear
+|
+.B \-wght
+]
+.LP
+[
+.BI \-scale_factors \ scale_factors_file
+]
+.LP
+.B \-across_idim
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B pcorrelate
+calculates the Pearson's linear correlation coefficient between a list
+of y values and the pixels across a list of images. Each correlation
+is calculated only from pixels at a same location across all the
+images. The number of images and number of y values must be the same
+and in proper order. All input images must have the same dimensions.
+The output is an image the same dimension as the input images with
+each pixel representing that locations correlation value. The y
+values may also specified by giving a pixel location. The correlation
+at that location would then be 1 because it would be correlated with
+itself.
+.SH OPTIONS
+.TP
+.BI -list \ listfile
+file containing a list of input image file names in
+the correct order for correlation. One file name per line. Lines
+beginning with "#" are ignored as comment lines. The image order must
+correspond with the y values.
+.TP
+.I infile1 infile2 infile3 ...
+input image file names in the correct order for correlation.
+Not compatible with listfile.
+.TP
+.BI -p \ x,y,z,i
+pixel location to get y values from input images. This is an
+alternative to inputing a y values from a file. It produces the
+correlation of this location with all other pixels locations across
+images. The pixel location correlated with itself will produce a 1 at
+this location in the output image.
+.TP
+.BI -yf \ y_file
+name of file to read y values from. This is an ascii file containing
+a list of numbers. All standard scanf floating point number formats
+are allowed(ie. 2.345, 9.34e-2). One number per line. Lines
+beginning with "#" are ignored as comments. The order must correspond
+to the image list order.
+.TP
+.B -print_list
+print a list of input image file names along side of
+corresponding y values. Useful for checking correct ordering of
+correlation.
+.TP
+.BI -o \ outfile
+output file name with or without .img extension. Output file is in either
+ANALYZE or ECAT depending on type of first input image.
+.TP
+.BI -templatelist \ templatelistfile
+file containing a list of template file names in
+the correct order for templating each input image. One file name per line. Lines
+beginning with "#" are ignored as comment lines. An image file will contribute only
+to voxels where the corresponding template file voxel is greater then 0.5.
+.TP
+.BI -template \ template1\ template2\ template3\ ...
+input template file names in the correct order corresponding to image files.
+Treated as files from templatelistfile above. Not compatible with templatelistfile.
+.TP
+.BI -mincnt \ mincount
+minimum number of values needed to calculate a correlation at a voxel. If not enough
+images contribute to a voxel, due to templates, the correlation for that voxel is set
+to 0.
+.TP
+.B -across_idim
+calculate across the i dimension of a single file instead of across multiple files.
+.TP
+.BI -scale_factors \ scale_factors_file
+scale each input image by the corresponding factor before performing correlation.
+Allows use of image normalization factors without storing intermediate images.
+.TP
+.B -anova
+perform analysis of variance test instead of Pearson's correlation.
+.TP
+.B -spear
+calculate Spearman rank-order correlation coefficients instead of
+Pearson's linear.
+.TP
+.B -wght
+calculate a weighted sum of pixels across images instead of standard correlations.
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR ttestimgs (1),
+.BR pixelstats (1),
+.BR cnuintro (3)

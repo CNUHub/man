@@ -1,0 +1,64 @@
+.\" @(#)ecatconvert.1;
+.TH ECATCONVERT 1 "16 January 2003" "CNU Tools" "CNU Tools"
+.SH NAME
+ecatconvert \- ECAT convert image type
+.SH SYNOPSIS
+.B ecatconvert
+.I infile
+.I outfile
+[
+.B \-image
+|
+.B \-scan
+|
+.B \-norm
+|
+.B \-attn
+]
+[
+.B \-uchar
+|
+.B \-short
+|
+.B \-int
+|
+.B \-float
+]
+.SH DESCRIPTION
+.LP
+.B ecatconvert
+converts an ECAT image file to another ECAT image file type
+.SH OPTIONS
+.TP
+.I infile
+input ECAT file name with or without .img extension
+.TP
+.I outfile
+.TP
+.B \-image
+convert to ECAT image file
+.TP
+.B \-scan
+convert to ECAT scan file
+.TP
+.B \-norm
+convert to ECAT norm file
+.TP
+.B \-attn
+convert to ECAT attenuation file
+.TP
+.B \-uchar
+output data of type unsigned character
+.TP
+.B \-short
+output data of type short
+.TP
+.B \-int
+output data of type integer
+.TP
+.B \-float
+output data of type float
+.SH "SEE ALSO"
+.BR ecatheader (1),
+.BR ecat2analyze (1),
+.BR cnuintro (3)

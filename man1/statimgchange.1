@@ -1,0 +1,212 @@
+.\" @(#)satimgchange.1;
+.TH STATIMGCHANGE 1 "21 January 2003" "CNU Tools" "CNU Tools"
+.SH NAME
+statimgchange \- statistical image change
+.SH SYNOPSIS
+.PD 0
+.B statimgchange
+.I infile
+.I outfile
+.LP
+.I \-z_to_prob
+|
+.I \-prob_to_z
+|
+.BI \-pow \ power
+|
+.BI \-cunjunct \ power
+.LP
+[
+.B \-auto
+|
+.BI \-s \ scale_factor
+]
+.LP
+[
+.B \-set[_new_quantification]
+]
+[
+.BI \-t \ translation
+]
+.LP
+[
+.BI \-ge \ min_thresh
+|
+.BI \-gf \ min_thresh_factor
+[
+.BI \-minv \ min_value
+]
+]
+.LP
+[
+.BI \-le \ max_thresh
+[
+.BI \-maxv \ max_value
+]
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B statimgchange
+converts statistics between probability and z values and allows converting
+minimum z values from multiple studies into a conjoined z-value.
+.SH OPTIONS
+.TP
+.I infile
+input image file
+.TP
+.I outfile
+output image file.  The output file type defaults to input type.
+.TP
+.B -z_to_prob
+convert the z statistical values into probabilities
+.TP
+.B -prob_to_z
+convert the probability values into z statistics
+.TP
+.BI -pow \ power
+raise the image values to the given power
+.TP
+.BI -conjucnt \ power
+convert z values to probabilities, raise the probabilities to the given power,
+and convert the reased probabilities back into z values.  Used for conjunction
+analysis where input z values are minimums across power number of images.
+.TP
+.B \-auto
+automatically calculate scale factor to utilize full range of output
+type. Not valid when outputting ECAT file where each plane is given
+its own optimum quantification factor.
+.TP
+.BI \-s \ scale_factor
+factor to scale image pixel values by.
+Scaling is performed after thresholding and translation.
+.TP
+.B \-set
+new quantification. Normally scaling resets the quantification values
+to reflect the original units. Scaling is then ignored by routines
+that read the quantification value.  Since the ECAT format
+incorporates a quantification factor on each plane, that can't be
+ignored while reading or writing, scaling ECAT files gets totally
+ignored without this flag.  With the ANALYZE format the quantification
+factor is not fully incorporate and scaling has effect even without
+this flag.
+.TP
+.BI \-t \ translation
+translate pixel values by this amount.
+This is applied after thresholding but before scaling.
+.TP
+.BI \-ge \ min_thresh
+threshold limiting minimum output pixel values (values below the
+threshold are set to
+.I min_value
+).
+.TP
+.BI \-gf \ min_thresh_factor
+calculate
+.I min_thresh
+based on
+.I min_thresh_factor
+times maximum pixel value over the whole image
+.TP
+.BI \-minv \ min_value
+only used if
+.I min_thresh
+or
+.I min_thresh_factor
+is set.  Then all values less then the threshold will be set to
+.I min_value
+(defaults to 0).
+.TP
+.BI \-le \ max_thresh
+threshold limitimg maximum output pixel values (values above
+the threshold are set to
+.IB max_value ).
+.TP
+.BI \-maxv \ max_value
+only used if
+.I max_thresh
+is set.  Then all values greater then
+.I max_thresh
+will be set to
+.I max_value
+(defaults to
+.I max_thresh
+).
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR ttestimgs (1),
+.BR pixelstats (1),
+.BR cnuintro (3)

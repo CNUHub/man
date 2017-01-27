@@ -1,0 +1,86 @@
+.\" @(#)talairachpoint.1;
+.TH TALAIRACHPOINT 1 "6 June 1994" "CNU Tools" "CNU Tools"
+.SH NAME
+talairachpoint \- converts Talairach image pixel indices into Talairach
+units(mm).
+.SH SYNOPSIS
+.B talairachpoint
+.PD 0
+[
+.BI \-tf \ talairach_image_file
+|
+.BI \-nf \ nontaliarach_image_file
+[
+.BI \-mf \ mapfile
+]
+]
+.LP
+[
+.BI \-p \ x,y,z
+|
+.BI \-pf \ point_file
+]
+.LP
+[
+.BI \-xf \ x_factor
+]
+[
+.BI \-yf \ y_factor
+]
+[
+.BI \-zf \ z_factor
+]
+.LP
+[
+.BI \-xt \ x_translation
+]
+[
+.BI \-yt \ y_translation
+]
+[
+.BI \-zt \ z_translation
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B talairachpoint
+converts single or list of Talairach pixel indices into Talairach
+space units(mm). If non-Talairach image file and no map file specified prompts
+user for mapping parameters like the program talairach.
+.SH OPTIONS
+.TP
+.BI \-tf \ talairach_image_file
+image warped into Talairach space from which the pixel indices were
+derived
+.TP
+.BI \-nf \ nontaliarach_image_file
+image not warped into Talairach space from which the pixel indices
+were derived
+.TP
+.BI \-mf \ mapfile
+input file to take mapping parameters from instead of user input(ignored for
+talairach image files)
+.TP
+.BI \-p \ x,y,z
+pixel indices in the talairach image \- may be subpixel floating point numbers
+.TP
+.BI \-pf \ point_file
+file containing list of points to be converted. The points must be at the
+beginning of a line. Lines not containing 3 numbers at the beginning are passed
+through unaltered. The 3 numbers themselves are converted and output
+with the remainder of the line echoed. Spacing for these lines may be
+altered.
+.TP
+.I x_factor, y_factor, z_factor
+scale factors to multiply indices points by before further conversion
+.TP
+.I x_translation, y_translation, z_translation
+translations to add to indice points after multiplying by
+factors and before further conversion
+
+.SH "SEE ALSO"
+.BR petpoint (1),
+.BR talairach (1),
+.BR talairachgrid(1),
+.BR pearl (1),
+.BR cnuintro (3)

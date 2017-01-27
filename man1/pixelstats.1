@@ -1,0 +1,273 @@
+.\" @(#)pixelstats.1;
+.TH PIXELSTATS 1 "13 July 2001" "CNU Tools" "CNU Tools"
+.SH NAME
+pixelstats \- calculate statistics pixel wise across data images
+.SH SYNOPSIS
+.PD 0
+.B pixelstats
+(
+[
+.B \-t
+|
+.B \-td
+]
+.BI \-list \ list_file
+.LP
+|
+.I infile1
+[
+.I infile2
+[
+.I infile3
+[...]
+]
+]
+.LP
+[
+.B \-t
+|
+.B \-td
+[
+.B \-nt
+]
+.I templatefile1
+[
+.I templatefile2
+[...]
+]
+]
+)
+.LP
+[
+.BI \-avg \ averagefile
+[
+.BI \-mac \ min_avg_count
+]
+]
+.LP
+[
+.BI \-std \ stdfile
+[
+.BI \-msc \ min_std_count
+]
+]
+.LP
+[
+.BI \-min \ minfile
+]
+[
+.BI \-max \ maxfile
+]
+[
+.BI \-maxmag \ maxmagfile
+]
+.LP
+[
+.BI \-cnt \ cntfile
+]
+.LP
+[
+.BI \-rank \ imgtorank
+[
+.B \-r2tail
+|
+.B \-rnegtail
+]
+[
+.BI \-rcnt \ rank_ge_cnt_outfile
+]
+[
+.BI \-rprob \ rankproboutfile
+]
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B pixelstats
+accumlates some standard statistics for each voxel location across images.
+.TP
+.B Note
+\- ANALYZE output is truncated to fit output type without scaling.
+The output type defaults to largest input type.
+ECAT output is scaled because the quantification factor is more
+rigidly implemented.
+.SH OPTIONS
+.TP
+.BI -list \ listfile
+file containing list of image file names to calculate
+statistics on.  The file should contain one line per input image file
+with the name of the image file and if needed the name of the
+corresponding template file.  Template file names are ignored without
+-t or -td option.
+.TP
+.I infile1 infile2 infile3 ...
+file names of images to calculate statistics on with or
+without .img.  Requires at least one input file. All arguments not
+recognized as other options and prior to -t or -td option are treated
+as these input file names.
+.TP
+.BI -avg \ averagefile
+output file name for average file with or without .img extension.
+.TP
+.BI -mac \ min_avg_count
+minimum number of contributing pixels used to calculate an average.
+Output pixel value set to zero when fewer then min_avg_count input
+pixels contribute.  Value should be at least one. Defaults to one.
+.TP
+.BI -std \ stdfile
+output file name for standard deviation file with or without .img
+extension.
+.TP
+.BI -msc \ min_std_count
+minimum number of contributing pixels used to calculate an standard
+deviation.  Output pixel value set to zero when fewer then
+min_std_count input pixels contribute.  This number must be greater
+then min_avg_count and at least 2.  Defaults to 2.
+.TP
+.BI -cnt \ cntfile
+output file name for count file with or without .img extension.  This
+file will contain the count used to calculate the mean and standard
+deviation at each pixel.  Not thresholded for minimum count values.
+.TP
+.BI -min \ minfile
+output file name for minimum file with or without .img extension. This
+file will contain the minimum values for each voxel accross images.
+.TP
+.BI -max \ maxfile
+output file name for maximum file with or without .img extension. This
+file will contain the maximum values for each voxel accross images.
+.TP
+.BI -maxmag \ maxmagfile
+output file name for maximum magnitude file with or without .img extension. This
+file will contain the maximum magnitude values for each voxel accross images.
+.TP
+.BI -rank \ imgtorank
+specifies an image file to rank each voxel relative to corresponding voxels
+in other input files
+.TP
+.B -r2tail
+generate 2 tail rank instead of 1 tail. Requires -rank option.
+The rank_ge_cnt_outfile and rankproboutfile will be based on
+voxels that were greater or equal in magnitude to the
+corresponding imgtorank voxel.
+.TP
+.B -rnegtail
+generate rank on negative tail instead of positive.
+The rank_ge_cnt_outfile and rankproboutfile will be based on
+voxels that were less then or equal to the corresponding imgtorank voxel.
+.TP
+.BI -rcnt \ rank_ge_cnt_outfile
+output file name for image that contains the counts of number of
+voxels that were greater or equal to the corresponding imgtorank voxel
+.TP
+.BI -rprob \ rankproboutfile
+output file name for image that contains ratio of voxels that
+were greater or equal to the corresponding imgtorank voxel divided
+by total number of corresponding voxels
+.TP
+.BI -max \ maxfile
+output file name for maximum file with or without .img extension. This
+file will contain the maximum values for each voxel accross images.
+.TP
+.B \-t
+And together template files so that only pixels that are greater then
+zero in all templates are set in the result files.  Other pixels
+default to 0.  There can be any number of template files.  If used
+with the -list option templates are read from the listfile.
+Without -list file names following -t are treated as template files.
+.TP
+.B \-td
+treat any further unrecognized arguments as templates to be applied in
+order to the input files.  Each input file will only contributes
+pixels where its corresponding template image is greater then zero.
+The average image defaults to zero where the number of contributing
+input files is less then min_avg_count.  The standard deviation image
+defaults to zero where the number of contributing input files is less
+then min_std_count.  There must be as many template files as input
+files.
+.TP
+.B \-nt
+normalize input images by scaling means to 1000 based on templated mean. Requires -td option.
+.TP
+.I templatefile1 templatefile2 ...
+file names of templates to be applied to added image. Arguments not
+fitting other options following -t or -td are treated as these
+template file names.
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR addimgs (1),
+.BR divideimgs (1),
+.BR cnuintro (3)

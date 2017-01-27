@@ -1,0 +1,43 @@
+.\" @(#)ecatheader.1;
+.TH ECATHEADER 1 "4 October 1993" "CNU Tools" "CNU Tools"
+.SH NAME
+ecatheader \- ECAT print header
+.SH SYNOPSIS
+.B ecatheader
+.I infile
+[
+.B \-all
+|
+.B \-main
+|
+[
+.BI \-frame \ frame
+]
+[
+.BI \-plane \ plane
+]
+]
+.SH DESCRIPTION
+.LP
+.B ecatheader
+prints header information from an ECAT file
+.SH OPTIONS
+.TP
+.I infile
+input ECAT file name with or without .img extension
+.TP
+.B \-all
+print the main header and all sub headers
+.TP
+.B \-main
+print only the main header
+.TP
+.BI \-frame \ frame
+print subheaders for given frame only
+.TP
+.BI \-plane \ plane
+print subheaders for given plane only
+.SH "SEE ALSO"
+.BR ecat2analyze (1),
+.BR analyzeheader (1),
+.BR cnuintro (3)

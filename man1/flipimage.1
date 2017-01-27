@@ -1,0 +1,121 @@
+.\" @(#)flipimage.1;
+.TH FLIPIMAGE 1 "13 July 2001" "CNU Tools" "CNU Tools"
+.SH NAME
+flipimage \- flip planes, rows or columns of an image
+.SH SYNOPSIS
+.PD 0
+.B flipimage
+.I infile
+.I outfile
+[
+.B \-z
+|
+.B \-y
+|
+.B \-x
+|
+.B \-xy
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B flipimage
+reverses the order of the z planes, y rows or x columns of an image or
+switches the x columns with y rows of an image
+.SH OPTIONS
+.TP
+.I infile
+input ANALYZE or ECAT file name with or without .img extension
+.TP
+.I outfile
+output ANALYZE/ECAT file name with or without .img extension
+.TP
+.B \-z
+flip z planes(default if no other selection)
+.TP
+.B \-y
+flip y rows
+.TP
+.B \-x
+flip x cols
+.TP
+.B \-xy
+switch rows and columns
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR diff2imgs (1),
+.BR avgimgs (1),
+.BR cnuintro (3)

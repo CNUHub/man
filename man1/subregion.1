@@ -1,0 +1,155 @@
+.\" @(#)subregion.1;
+.TH SUBREGION 1 "2 August 1994" "CNU Tools" "CNU Tools"
+.SH NAME
+subregion \- select a subregion of an image
+.SH SYNOPSIS
+.B subregion
+.PD 0
+.I infile
+.I outfile
+[
+.B \-resize
+]
+[
+.B \-center
+]
+[
+.BI \-p \ padvalue
+]
+.LP
+[
+.BI \-xb \ xbeg
+]
+[
+.BI \-xe \ xend
+]
+[
+.BI \-yb \ ybeg
+]
+[
+.BI \-ye \ yend
+]
+.LP
+[
+.BI \-zb \ zbeg
+]
+[
+.BI \-ze \ zend
+]
+[
+.BI \-ib \ ibeg
+]
+[
+.BI \-ie \ iend
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B subregion
+outputs a select region of the input image. The output image will have the same
+dimensions as the input with the area outside the subregion set to 0 or
+padvalue. The \-resize option causes the output file to contain only
+the subregion with no padding.
+.SH OPTIONS
+.TP
+.I infile
+input ANALYZE or ECAT file name with or without .img extension
+.TP
+.I outfile
+output ANALYZE/ECAT file name with or without .img extension. Output
+file will be same type as input file
+.TP
+.B \-resize
+resize output image to contain only the subregion
+.TP
+.B \-center
+center subregion on output image. Only makes sense if not resized.
+.TP
+.BI \-p \ padvalue
+fill value for area outside of subregion(defaults to 0).
+Not used when image is resized.
+.TP
+.I xbeg, ybeg, zbeg, ibeg
+Beginning location of subregion. Values not specified default to input image
+origin.
+.TP
+.I xend, yend, zend, iend
+Ending location of subregion. Values not specified default to input image end.
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR cnuintro (3),
+.BR brainextents (1),
+.BR ecat2analyze (1)

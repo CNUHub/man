@@ -1,0 +1,137 @@
+.\" @(#)catimgs.1;
+.TH CATIMGS 1 "16 January 2003" "CNU Tools" "CNU Tools"
+.SH NAME
+catimgs \- concatenate together data images
+.SH SYNOPSIS
+.PD 0
+.B catimgs
+[
+.BI \-dim \ x|y|z|i(z)
+]
+[
+.BI \-res \ dimres
+]
+.I infile1
+.I infile2
+[
+.I infile3
+[...]
+]
+.BI \-o \ outfile
+.LP
+[
+.B \-tran
+|
+.B \-sag
+|
+.B \-cor
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B catimgs
+concatenate 2 or more images in input order across 1 of the 4 dimensions.
+Defaults to across planes.  Dimension of input images must match except in
+the dimension the concatenation is performed.
+.SH OPTIONS
+.TP
+.BI \-dim \ x|y|z|i(z)
+dimension to perform concatenation across.  Defaults to across z planes.
+Also excepts the numerical, 0 relative, dimension numbers 0 thru 3 in place
+of x, y, z or i.  With 0 equivalent to x and 3 equivalent to i.
+.TP
+.BI \-res \ dimres
+resolution to set for concatenation dimension.  Input images
+might not store or set this resolution or we may be undersampling
+the original set so the original resolution may be invalid.
+.TP
+.I infile1
+input file name with or without .img extension
+.TP
+.I infile2
+input file name with or without .img extension
+.TP
+.BI \-o \ outfile
+output file name with or without .img extension
+.TP
+.B \-tran, \-sag, \-cor
+flag output image as transverse, sagital or coronal image
+(defaults to transverse)
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR diff2imgs (1),
+.BR ecat2analyze (1),
+.BR cnuintro (3)

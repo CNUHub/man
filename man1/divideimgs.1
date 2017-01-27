@@ -1,0 +1,125 @@
+.\" @(#)divideimgs.1;
+.TH DIVIDEIMGS 1 "13 July 2001" "CNU Tools" "CNU Tools"
+.SH NAME
+divideimgs \- divides corresponding pixels in one image by another
+.SH SYNOPSIS
+.PD 0
+.B divideimgs
+.I infile1
+.I infile2
+.I outfile
+[
+.BI \-m \ minimum_divisor_magnitude
+]
+[
+.BI \-d \ default_value
+]
+[
+.BI \-f \ factor
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B divideimgs
+divides corresponding pixels from ANALYZE image infile1 by ANALYZE image
+infile2.
+.SH OPTIONS
+.TP
+.B infile1
+dividend input ANALYZE file name with or without .img extension
+.TP
+.B infile2
+divisor input ANALYZE file name with or without .img extension
+.TP
+.B outfile
+output ANALYZE file name with or without .img extension
+.TP
+.BI \-m \  minimum_divisor_magnitude
+if the magnitude of a divisor pixel is less then this magnitude the
+corresponding output pixel will be set to default_value(defaults to 1e-16)
+.TP
+.BI \-d \ default_value
+value to output for pixels with divisor less then minimum_divisor_magnitude.
+.TP
+.BI \-f \ factor
+multiply all pixels by this factor
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR addimgs (1),
+.BR avgimgs (1),
+.BR diff2imgs (1),
+.BR ecat2analyze (1),
+.BR cnuintro (3)

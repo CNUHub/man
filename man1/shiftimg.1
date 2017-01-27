@@ -1,0 +1,48 @@
+.\" @(#)shiftimg.1;
+.TH SHIFTIMG 1 "2 August 1994" "CNU Tools" "CNU Tools"
+.SH NAME
+shiftimg \- shift pixel locations with wrap around
+.SH SYNOPSIS
+.B shiftimg
+.I infile
+.I outfile
+[
+.B \-center
+]
+[
+.BI \-x / xshift
+]
+[
+.BI \-y / yshift
+]
+[
+.BI \-z / zshift
+]
+[
+.BI \-i / ishift
+]
+.SH DESCRIPTION
+.LP
+.B shiftimg
+shifts pixels locations with wrap around. Points that would be shifted
+outside the image are wrapped to the other side of the image.
+.SH OPTIONS
+.TP
+.I infile
+input ANALYZE or ECAT file name with or without .img extension
+.TP
+.I outfile
+output ANALYZE/ECAT file name with or without .img extension. Output
+file will be same type as input file
+.TP
+.B \-center
+centers image based on brain extents which are calculated using 30% of
+image maximum.  Other shift values are ignored.
+.TP
+.I xshift, yshift, zshift, ishift
+amount to shift each pixel in x, y, z and i
+
+.SH "SEE ALSO"
+.BR cnuintro (3),
+.BR subregion (1)
+

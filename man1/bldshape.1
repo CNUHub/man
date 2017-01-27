@@ -1,0 +1,113 @@
+.\" @(#)bldshape.1;
+.TH BLDSHAPE 1 "6 March 1996" "CNU Tools" "CNU Tools"
+.SH NAME
+bldshape \- build shape
+.SH SYNOPSIS
+.BI bldshape \ outfile
+.nf
+\fR[ \fB\-if \fIinfile \fR| \fB\-size \fIxdim,ydim,zdim,idim \fR]
+\fR[ \fB\-b \fIxorig,yorig,zorig,xend,yend,zend \fR|
+  \fB\-bc \fIxcenter,ycenter,zcenter,xlength,ylength,zlength \fR|
+  \fB\-c \fIxcenter,ycenter,zcenter,radius \fR|
+  \fB\-e \fIxcenter,ycenter,zcenter,xlength,ylength,zlength \fR|
+  \fB\-alt \fIax,ay,az,ai \fR]
+\fR[\fB\-fg \fIforeground_value\fR] \fR[\fB\-bg \fIbackground_value \fR| \fB\-bif\fR]
+\fR[\fB\-uchar \fR| \fB\-char \fR| \fB\-ushort \fR| \fB\-short \fR| \fB\-uint \fR| \fB\-int \fR| \fB\-float\fR] \fR[\fB\-analyze \fR| \fB\-ecat\fR]
+\fR[\fB\-analyze \fR| \fB\-nifti \fR| \fB\-ecat \fR| \fB\-ecat7 \fR| \fB\-dicom \fR| \fB\-sdt\fR]
+.fi
+.SH DESCRIPTION
+.LP
+.B bldshape
+builds a constant value simple 3d image shape. The shape may be written
+with a constant value background or with an existing image in the background.
+.SH OPTIONS
+.TP
+.I outfile
+output ANALYZE/ECAT file. File type is ANALYZE unless input file is
+specified and ECAT. Data type is unsigned character unless input
+file is used for background(\-bif) and then data type is set to input type.
+.TP
+.BI \-if \ infile
+optional input ANALYZE/ECAT file name with or without .img extension.
+Output dimensions and file type are derived from this file.
+.TP
+.BI \-size \ xdim,ydim,zdim,idim
+dimensions for output file. Ignored if infile is specified.
+.TP
+.BI \-b \ xorig,yorig,zorig,xend,yend,zend
+bounds in pixel coordinates describing a box shape
+to create.
+.TP
+.BI \-bc \ xcenter,ycenter,zcenter,xlength,ylength,zlength
+centroid and size in pixel coordinates describing a box shape
+to create.
+.TP
+.BI \-c \ xcenter,ycenter,zcenter,radius
+centroid and radius in pixel coordinates describing a spherical shape
+to create.
+.TP
+.BI -e \ xcenter,ycenter,zcenter,xlength,ylength,zlength
+centroid and major axis lengths in pixel coordinates describing a
+spherical shape to create.
+.TP
+.BI -alt \ ax,ay,az,ai
+lengths in pixels between background and foreground value switching
+describing an alternating checkerboard pattern
+.TP
+.B foreground_value
+value to assign to pixels inside the shape
+.TP
+.B background_value
+value to assign to pixels outside the shape. Ignored with infile and
+\-bif option.
+.TP
+.B \-bif
+background input file\(ie. assign pixels outside the shape values from
+corresponding pixels in the input file\).
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR cnuintro (3),
+.BR roistats (1),
+.BR bldtemplate (1),
+.BR templateimg (1)

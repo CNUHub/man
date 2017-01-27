@@ -1,0 +1,81 @@
+.\" @(#)bldtemplate.1;
+.TH BLDTEMPLATE 1 "6 March 1996" "CNU Tools" "CNU Tools"
+.SH NAME
+bldtemplate \- build template image
+.SH SYNOPSIS
+.nf
+\fBbldtemplate \fIinfile \fIoutfile
+\fR[\fB\-tp \fIthreshold_percent \fR| \fB-t \fIthreshold\fR]
+\fR[\fB\-nofill]
+\fR[\fB\-uchar \fR| \fB\-char \fR| \fB\-ushort \fR| \fB\-short \fR| \fB\-uint \fR| \fB\-int \fR| \fB\-float\fR] \fR[\fB\-analyze \fR| \fB\-ecat\fR]
+\fR[\fB\-analyze \fR| \fB\-nifti \fR| \fB\-ecat \fR| \fB\-ecat7 \fR| \fB\-dicom \fR| \fB\-sdt\fR]
+.ft
+.SH DESCRIPTION
+.LP
+.B bldtemplate
+builds a template image by inward scanning in both the x and y dimensions
+until the image values are greater then or equal to the threshold
+.SH OPTIONS
+.TP
+.I infile
+input data image file name with or without type extension(i.e. ".img")
+.TP
+.I outfile
+output data image file name with or without type extension
+.TP
+.BI \-tp \ threshold_percent
+percent of input image maximum to use as threshold (defaults to 40)
+.TP
+.BI \-t \ threshold
+pixel value of threshold (if unspecified set using threshold_precent)
+.TP
+.B \-nofill
+Threshold only. Will not preform the inward x and y filling
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR cnuintro (1),
+.BR bldtemplate (3),
+.BR templateimg (1),
+.BR scaleimg (1)
+

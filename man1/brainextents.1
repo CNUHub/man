@@ -1,0 +1,34 @@
+.\" @(#)brainextents.1;
+.TH BRAINEXTENTS 1 "2 August 1994" "CNU Tools" "CNU Tools"
+.SH NAME
+brainextents \- calculates minimum bounding box brain extents
+.SH SYNOPSIS
+.B brainextents
+.I infile
+[
+.BI \-p \ percent_max
+]
+.SH DESCRIPTION
+.LP
+.B brainextents
+outputs minimum bounding box containing all points at or above percent_max
+of image maximum. Output is to standard out formatted as
+"\-xb xbeg \-xe xend \-yb ybeg \-ye yend \-zb zbeg \-ze zend \-ib ibeg \-ie iend". This format can be used as command line input to other routines such
+as subregion and ecat2analyze.
+
+Example:
+
+	subregion input.img output.img `brainextents input.img`
+
+.SH OPTIONS
+.TP
+.I infile
+input ANALYZE or ECAT file name with or without .img extension
+.TP
+.BI \-p \ percent_max
+percent of image maximum to be used in calculating minimum bounding box
+(defaults to 30)
+.SH "SEE ALSO"
+.BR subregion (1),
+.BR ecat2analyze (1),
+.BR cnuintro (3)

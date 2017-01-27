@@ -1,0 +1,151 @@
+.\" @(#)talairach.1;
+.TH TALAIRACH 1 "3 January 1994" "CNU Tools" "CNU Tools"
+.SH NAME
+talairach \- converts an image to taliarach space
+.SH SYNOPSIS
+.B talairach
+.PD 0
+.I infile
+.I outfile
+[
+.B \-zdbl
+]
+[
+.B \-r[esize]
+]
+[
+.BI \-mf \ mapfile
+]
+[
+.BI \-wmf \ writemapfile
+]
+[
+.BI \-npgs \ maxnumpgbuffs
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B talairach
+converts an image to Talairach space performing linear scaling,
+translation and rotation. The routine prompts the user for the front and
+back of brain which it uses to set default AC & PC locations and sizes
+for the brain. Then it prompts for lengths in x(width of brain),
+y(front to back length of brain) and
+z(height of brain from AC-PC line to top of head).
+Next, it prompts for AC and PC locations with defaults set to standard
+Talairach distance between front and back of brain.
+Lastly, it prompts for x and z rotations with defaults calculated from
+the AC & PC locations. If a mapfile is specified no user input prompting
+is performed.
+
+.SH OPTIONS
+.TP
+.I infile
+input ANALYZE or ECAT file name with or without .img extension
+.TP
+.I outfile
+output ANALYZE/ECAT file name with or without .img extension
+.TP
+.B \-zdbl
+double z dimensions by averaging before resampling in talairach to help
+smooth output
+.TP
+.B \-r
+resize output image to be larger(30% in x&y and 10% in z) then
+the standard talairach brain. If not resized portions of input
+image may be shifted or scaled out of the image space.
+.TP
+.BI \-mf \ mapfile
+input file to retrieve mapping parameters from
+.TP
+.BI \-wmf \ writemapfile
+output file write mapping parameters to
+.TP
+.BI \-npgs \ maxnumpgbuffs
+maximum number of input page buffers to create before re-using
+buffers.  Each buffer is the size of one input z-plane.  For large
+angles ( > 20deg) this routine may have to jump from z-plane to
+z-plane often and too few buffers may lead to a lot of reloads.  In
+the worse case a reload may occur for every pixel.  If the routine
+runs terribly slow set this number equal to or greater then the number
+of planes.  This will cause whole input image to load into
+memory but is the only way to circumvent reloading.
+(default 10)
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR talairachgrid (1),
+.BR talairachpoint (1),
+.BR cnuintro (3)

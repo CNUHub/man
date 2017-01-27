@@ -1,0 +1,36 @@
+.\" @(#)psyrandom.1;
+.TH PSYRANDOM 1 "16 October 1998" "CNU Tools" "CNU Tools"
+.SH NAME
+psyrandom \- Psychiatry random number generator
+.SH SYNOPSIS
+.PD 0
+.B psyrandom
+.BI [\-s \ iseed]
+.BI [\-n \ number]
+.BI [\-r \ min{mean},max{stddev}]
+.B [\-a2] [\-gauss]
+.PD
+.SH DESCRIPTION
+.LP
+.B psyrandom
+prints uniform or gaussian distributed random numbers
+.SH OPTIONS
+.TP
+.I iseed
+seed for initializing random numbers (defaults to 1)
+.TP
+.I number
+number of random numbers to generate (defaults to 1)
+.TP
+.BI \-r \ min{mean},max{stddev}
+minumum and maximum values for uniform distributions or mean and
+standard deviation for gaussian distributions
+.TP
+.B \-a2
+utilize ran2 algorithm to generate uniform distribution
+.TP
+.B \-gauss
+generate normal (gaussian) distributed numbers
+.SH "SEE ALSO"
+
+

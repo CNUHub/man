@@ -1,0 +1,145 @@
+.\" @(#)normmean.1;
+.TH NORMMEAN 1 "November 13 2003" "CNU Tools" "CNU Tools"
+.SH NAME
+normmean \- normalize an image to have a standard mean
+.SH SYNOPSIS
+.PD 0
+.B normmean
+.I infile
+.I outfile
+[
+.BI \-tf \ template_file
+|
+.BI \-tpn \ threshold_percent
+|
+.BI \-tn \ threshold
+]
+[
+.BI \-m \ mean
+]
+[
+.B \-tran
+]
+[
+.B \-zero[_unused_voxels]
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.LP
+[
+.B \-analyze
+|
+.B \-ecat
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B normmean
+scales an image to have a given mean. Values below given thresh (or
+whose corresponding template value is zero or less) are ignored in
+calculating the scale factor.  Ignored values may be set to 0 on
+output with -zero flag. Image values can also be translated by minus
+thresh (or the template region's min) to remove the gap between zero
+and thresh with the -tran flag.
+.SH OPTIONS
+.TP
+.B infile
+input ANALYZE or ECAT file name with or without .img extension
+.TP
+.B outfile
+output ANALYZE/ECAT/SDT file name with or without .img extension
+.TP
+.BI \-tf \ template_file
+template for choosing voxels that contribute in calculating the scale
+factor.  Voxels in the input image will only contribute if their
+corresponding template voxels are greater then zero.
+.TP
+.BI \-tn \ threshold
+ignore values below this threshold when calculating the scale factor.
+.TP
+.BI \-tpn \ thresh_percent
+calculate above thresh as (maximum * thresh_percent * .01)
+.TP
+.BI \-m \ mean
+scale voxels to have this mean value(defaults to 1000)
+.TP
+.B \-tran
+translate voxels by minus thresh or minus template region's min
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR scaleimgs (1),
+.BR bldtemplate (1),
+.BR cnuintro (3)

@@ -1,0 +1,152 @@
+.\" @(#)ttestimgs.1;
+.TH TTESTIMGS 1 "12 June 1997" "CNU Tools" "CNU Tools"
+.SH NAME
+ttestimgs \- performs pixelwise students t-tests with "pooled variance"
+.SH SYNOPSIS
+.PD 0
+.B ttestimgs
+.BI \-m1 \ meanfile1
+.BI \-s1 \ stdfile1
+.BI \-n1 \ cntfile1
+.BI \-m2 \ meanfile2
+.BI \-s2 \ stdfile2
+.BI \-n2 \ cntfile2
+[
+.BI \-mc \ mincnt
+|
+.BI \-mc1 \ mincnt1
+.BI \-mc2 \ mincnt2
+]
+.B outfile
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B ttestimgs
+calculates pixelwise the student's t-tests for significantly different
+means with "pooled variance" between two groups of images. The
+t-tests are performed independently with each pixel location having
+its own group means and "pooled variance" calculated only from pixels
+at the same location across the images. The images have to have been
+preprocessed with pixelstats to generate mean, standard deviation and
+pixel count images for each group. It is best if the input means and
+standard deviations are stored as floating point images.
+.SH OPTIONS
+.TP
+.BI -m1 \ meanfile1
+image(ANALYZE or ECAT) containing mean values for the first group
+.TP
+.BI -s1 \ stdfile1
+image(ANALYZE or ECAT) containing standard deviation values for the
+first group
+.TP
+.BI -c1 \ cntfile1
+image(ANALYZE or ECAT) containing count of number of images
+contributing to mean and standard deviation at each pixel for the
+first group
+.TP
+.BI -m2 \ meanfile2
+image(ANALYZE or ECAT) containing mean values for the second group
+.TP
+.BI -s2 \ stdfile2
+image(ANALYZE or ECAT) containing standard deviation values for the
+second group
+.TP
+.BI -c2 \ cntfile2
+image(ANALYZE or ECAT) containing count of number of images
+contributing to mean and standard deviation at each pixel for the
+second group
+.TP
+.BI -mc \ mincnt
+for each indice the corresponding voxels from both cntfile1 and cntfile2 must be
+greater or equal to mincnt or the corresponding t-value output voxel is set to zero.
+mincnt must be at least 2. This value may be trumped by mincnt1 or mincnt2.
+.TP
+.BI -mc1 \ mincnt1
+for each indice the voxel from cntfile1 must be greater or equal to mincnt1
+or the corresponding t-value output voxel is set to zero.
+mincnt1 must be at least 2. This value may be trumped by mincnt.
+.TP
+.BI -mc2 \ mincnt2
+for each indice the voxel from cntfile2 must be greater or equal to mincnt1
+or the corresponding t-value output voxel is set to zero.
+mincnt2 must be at least 2. This value may be trumped by mincnt.
+.TP
+.B outfile
+output file name to contain t-test image
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR pcorrelate (1),
+.BR pixelstats (1),

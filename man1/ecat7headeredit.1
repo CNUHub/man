@@ -1,0 +1,38 @@
+.\" @(#)ecat7headeredit.1;
+.TH ECAT7HEADEREDIT 1 "16 January 2003" "CNU Tools" "CNU Tools"
+.SH NAME
+ecat7headeredit \- allows editing ecat7 header files
+.SH SYNOPSIS
+.PD 0
+.B ecat7headeredit
+.I infile1
+.I outfile
+.LP
+[
+.BI \-ed \ editor \ | \ \-
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B ecat7headeredit
+allows interactive or script editting of ECAT7 header files.
+Either a text editor is invoked or lines may be input directly
+from standard in.  The lines edited or input directly must correspond to the format
+output by ecat7header.  Values not typed in when reading from standard input or
+removed while editing keep their original values.  A full image file including the changed header and unchanged data is written to the outfile.
+.SH OPTIONS
+.TP
+.I infile1
+input file name
+.TP
+.I \ outfile
+output file name
+.TP
+.BI \-ed \ editor \ | \ \-
+name of editor such as vi or emacs or \- to read from standard input
+.SH "SEE ALSO"
+.BR ecat7header (1),
+.BR cnuintro (3)
+
+
+

@@ -1,0 +1,159 @@
+.LP
+.BR add2imgs (1)
+\- adds 2 data images
+.LP
+.BR addimgs (1)
+\- adds multiple data images
+.LP
+.BR analyze2ecat (1)
+\- ANALYZE to ECAT file conversion
+.LP
+.BR analyzeheader (1)
+\- ANALYZE print header
+.LP
+.BR analyzeheaderedit (1)
+\- allows editing analyze header files
+.LP
+.BR bldshape (1)
+\- build shape
+.LP
+.BR bldtemplate (1)
+\- build template image
+.LP
+.BR brainextents (1)
+\- calculates minimum bounding box brain extents
+.LP
+.BR catimgs (1)
+\- concatenate together data images
+.LP
+.BR connectedregion (1)
+\- define regions of connected pixels
+.LP
+.BR convertto1d (1)
+\- converts an image to 1 dimension or the inverse
+.LP
+.BR dicomheader (1)
+\- DICOM file print header
+.LP
+.BR diff2imgs (1)
+\- normalize and subtract 2 images
+.LP
+.BR divideimgs (1)
+\- divides corresponding pixels in one image by another
+.LP
+.BR ecat2analyze (1)
+\- ECAT to ANALYZE file conversion
+.LP
+.BR ecat7header (1)
+\- ECAT7 print header
+.LP
+.BR ecat7headeredit (1)
+\- allows editing ecat7 header files
+.LP
+.BR ecatconvert (1)
+\- ECAT convert image type
+.LP
+.BR ecatheader (1)
+\- ECAT print header
+.LP
+.BR ecatheaderedit (1)
+\- allows editing ecat header files
+.LP
+.BR fftfilter (1)
+\- utilizes fft to perform average or guassian filtering
+.LP
+.BR filterimg (1)
+\- cubic(NxNxN) or box(XxYxZ) mean lowpass filter or gradient filter
+.LP
+.BR flipimage (1)
+\- flip planes, rows or columns of an image
+.LP
+.BR gammaz (1)
+\- analyze maxima
+.LP
+.BR imgmath (1)
+\- apply a unitary pixel wise math function on a data image
+.LP
+.BR multiimgmath (1)
+\- multiple image math functions
+.LP
+.BR niftiheader (1)
+\- NIFTI print header
+.LP
+.BR niftiheaderedit (1)
+\- allows editing nifti header files
+.LP
+.BR normalizemean (1)
+\- normalize Analyze image to have a standard mean
+.LP
+.BR normmean (1)
+\- normalize an image to have a standard mean
+.LP
+.BR onedfilter (1)
+\- filters across one dimension of an image
+.LP
+.BR padimg (1)
+\- pad an image by given amounts
+.LP
+.BR pcorrelate (1)
+\- calculates pixelwise linear correlations coefficients
+.LP
+.BR pearl (1)
+\- locate image extremas
+.LP
+.BR petpoint (1)
+\- converts Talairach locations(mm) into image pixel indices
+.LP
+.BR pixelstats (1)
+\- calculate statistics pixel wise across data images
+.LP
+.BR psyimgheader (1)
+\- print image psyimg header info
+.LP
+.BR psyrandom (1)
+\- Psychiatry random number generator
+.LP
+.BR raw2analyze (1)
+\- raw to ANALYZE file conversion
+.LP
+.BR resample (1)
+\- resamples an image in x, y, and z with nearest pixel sampling
+.LP
+.BR resliceimg (1)
+\- reslices an image in x, y, and z with nearest pixel or linear interpolation sampling
+.LP
+.BR roistats (1)
+\- region of interest statistics
+.LP
+.BR scaleimg (1)
+\- linearly scale with thresholds voxels of a data image
+.LP
+.BR sdtheader (1)
+\- SDT file print header
+.LP
+.BR shiftimg (1)
+\- shift pixel locations with wrap around
+.LP
+.BR statimgchange (1)
+\- statistical image change
+.LP
+.BR subregion (1)
+\- select a subregion of an image
+.LP
+.BR talairach (1)
+\- converts an image to taliarach space
+.LP
+.BR talairachgrid (1)
+\- draws a grid on a taliarach image
+.LP
+.BR talairachpoint (1)
+\- converts Talairach image pixel indices into Talairach units(mm)
+.LP
+.BR templateimg (1)
+\- template image file
+.LP
+.BR ttestimgs (1)
+\- performs pixelwise students t-tests with pooled variance
+.LP
+.BR umri2analyze (1)
+\- University of Minnesota MRI to ANALYZE file conversion

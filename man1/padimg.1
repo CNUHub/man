@@ -1,0 +1,137 @@
+.\" @(#)padimg.1;
+.TH PADIMG 1 "21 April 2000" "CNU Tools" "CNU Tools"
+.SH NAME
+padimg \- pad an image by given amounts
+.SH SYNOPSIS
+.B padimg
+.PD 0
+.I infile
+.I outfile
+[
+.BI \-xpre \ x_prepad
+]
+.LP
+[
+.BI \-xpost \ x_postpad
+]
+[
+.BI \-ypre \ y_prepad
+]
+[
+.BI \-ypost \ y_postpad
+]
+.LP
+[
+.BI \-zpre \ z_prepad
+]
+[
+.BI \-zpost \ z_postpad
+]
+[
+.BI \-ipre \ i_prepad
+]
+[
+.BI \-ipost \ i_postpad
+]
+[
+.BI \-value \ padvalue
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B padimg
+increases the dimensions of an image by the amount of pre and post
+padding specified.
+.SH OPTIONS
+.TP
+.I infile
+input image file name with or without type extension(e.g., ".img")
+.TP
+.I outfile
+output file name with or without type extension(e.g., ".img")
+.TP
+.I x_prepad, y_prepad, z_prepad, i_prepad
+Amount of prepadding to use for each dimensions.  Defaults to 0.
+.TP
+.I x_postpad, y_postpad, z_postpad, i_postpad
+Amount of postpadding to use for each dimensions.  Defaults to 0.
+.TP
+.I padvalue
+pixel value to use for area outside of original image. Defaults to 0.
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR cnuintro (1),
+.BR subregion (1)

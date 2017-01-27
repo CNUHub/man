@@ -1,0 +1,184 @@
+.\" @(#)onedfilter.1;
+.TH ONEDFILTER 1 "17 January 2003" "CNU Tools" "CNU Tools"
+.SH NAME
+onedfilter \- filters across one dimension of an image
+.SH SYNOPSIS
+.PD 0
+.B onedfilter
+.I infile1
+|
+.BI \-list \ listfile
+.LP
+.BI \-o \ outfile
+.LP
+[
+.BI \-fft \ fftshapefile
+|
+.BI \-fir \ impulsefile
+|
+.BI \-avg \ width
+|
+.BI \-gs \ std,width
+]
+.LP
+[
+.BI \-dim \ x|y|z|i\ (i)
+]
+.LP
+[
+.B \-zeropad
+|
+.B \-replicatepad
+|
+.B \-wrapdatapad
+|
+.B \-noextrapad
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B onedfilter
+filters across one dimension of an image file.  The filtering is done
+by creating one dimensional array of all voxels across the filter
+dimension (with the other dimensions held constant), performing an
+fft, multiplying by the filter's fft, performing an inverse fft on the
+product and outputting the real values.  This is done for every
+combination of other dimensions.  For voxels near the beginning or end
+of the array there are 4 different methods to select how filter
+points beyond the array will be substituted for.  fft filtering
+requires padding to make the array length a power of 2 but also may
+require extra padding to make sure the filter doesn't wrap around.
+Any type of filtering has to resolve end point problems.  A common and
+the default is zero padding which tends to make end points approach
+zero thereby reducing their magnitude relative to others.  Another is
+replicate pad which gives the end points extra weight thereby
+increasing the influence of noise near end points.  The third is
+wrapping data from the other end of the array keeping the data
+statisticly consistent but may not make sense if spatially or
+temporally seperated objects end up influencing each other.  The
+fourth, no extra padding, is an option that may increase speed in the
+case where padding would be large and assumes that end points are of
+little consequences.
+.SH OPTIONS
+.TP
+.I infile
+input image file
+.TP
+.BI \-list \ listfile
+file containing a list of input image file names.  One file name per
+line.  Lines beginning with "#" are ignored as comment lines.
+.TP
+.BI -o \ outfile
+output file name.  Output file type depends
+on type of first input image or output type selected.
+.TP
+.BI \-fft fftshapefile
+file containing fft domain values for the filter
+.TP
+.BI \-fir impulsefile
+file containing time domain finite impulse response (fir) values for the filter
+.TP
+.BI \-avg width
+perform an averaging filter of given width in voxels
+.TP
+.BI \-gs std,width
+perform an gaussian distributed filter with given standard deviation and width in voxels
+.TP
+.BI \-dim \ x|y|z|i\ (i)
+filter across given dimension.  Defaults to i.  Dimensions may also be given
+as 0, 1, 2 or 3.
+.TP
+.B \-zeropad
+pad with zeroes to ensure filter doesn't wrap values
+.TP
+.B \-replicatepad
+pad with last value on each end to ensure filter doesn't wrap values
+.TP
+.B \-wrapdatapad
+pad data to ensure filter wrap values
+.TP
+.B \-noextrapad
+perform zero padding to get data array to power of 2 but no more.  This may cause
+data wrapping do to fft process and filter size.
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR fftfilter (1),
+.BR filterimg (1),
+.BR imgmath (1),
+.BR pcorrelate (1),
+.BR ttestimgs (1),
+.BR pixelstats (1),
+.BR cnuintro (3)

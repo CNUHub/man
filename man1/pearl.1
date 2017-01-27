@@ -1,0 +1,53 @@
+.\" @(#)pearl.1;
+.TH PEARL 1 "14 December 1993" "CNU Tools" "CNU Tools"
+.SH NAME
+pearl \- locate image extremas
+.SH SYNOPSIS
+.B pearl
+.I infile
+[
+.BI \-c \ CubeSide
+]
+[
+.B \-nof[ilter]
+]
+[
+.B \-r[elax_neighbor]]
+]
+[
+.BI \-tf \ template_file
+|
+.BI \-tp \ threshpercent
+]
+.SH DESCRIPTION
+.LP
+.B pearl
+locates pixels in an image with absolute values greater then their
+neighbors and located within the boundaries of a template.
+Without a template file it builds a template based on the infile
+and threshpercent. Outputs to *.out and *.tag based in infile name.
+.SH OPTIONS
+.TP
+.B infile
+input ANALYZE or ECAT file name with or without .img extension
+.TP
+.B \-nof
+do not run averaging filter before locating extrema
+.TP
+.B \-r
+relax neighbor criteria to flag extremas with neighbors less then or
+equal to instead of just less then
+.TP
+.BI \-c \ CubeSide
+size of cube for averaging filter and determining extrema centroids
+.TP
+.BI \-tf \ template_file
+file containing template image
+.TP
+.BI \-tp \ threshpercent
+percent of maximum for thresholding input image(defaults to 40%)
+.SH "SEE ALSO"
+.BR cnuintro (3),
+.BR gammaz (1),
+.BR bldtemplate (1)
+

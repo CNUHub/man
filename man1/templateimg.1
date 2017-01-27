@@ -1,0 +1,132 @@
+.\" @(#)templateimg.1;
+.TH TEMPLATEIMG 1 "14 December 1993" "CNU Tools" "CNU Tools"
+.SH NAME
+templateimg \- template image file
+.SH SYNOPSIS
+.B templateimg
+.PD 0
+.I infile
+.I outfile
+[
+.BI \-tf \ template_file
+]
+[
+.BI \-tp \ threshold_percent
+|
+.BI \-t \ threshold
+]
+[
+.B \-nofill
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B templateimg
+templates an input image using a template image directly, or by
+thresholding the input image, or by thresholding the template image.
+By default thresholding is done with inward scanning in both the x and
+y dimensions on the image until the values are greater then or equal
+to the threshold. The "-nofill" option reverts to voxel wise
+thresholding.
+.SH OPTIONS
+.TP
+.I infile
+input image file name
+.TP
+.I outfile
+output image file name
+.TP
+.I template_file
+file containing template image.  If no threshold or threshold_percent
+is specified, output pixels are set to input values only where the
+template is greater then 0.  If a threshold or threshold_percent is
+specified the template is reworked with those thresholds and the fill
+option before applying to the input.
+.TP
+.I threshold_percent
+percent of template image(or input image) maximum to use as threshold.
+(defaults to 40% if no threshold given and no template image given).
+.TP
+.I threshold
+pixel value of threshold
+.TP
+.B \-nofill
+do not use inward scanning while calculating template based on thresholds
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR cnuintro (1),
+.BR bldtemplate (1)
+

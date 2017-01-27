@@ -1,0 +1,122 @@
+.\" @(#)diff2imgs.1;
+.TH DIFF2IMGS 1 "July 13 2001" "CNU Tools" "CNU Tools"
+.SH NAME
+diff2imgs \- normalize and subtract 2 images
+.SH SYNOPSIS
+.PD 0
+.B diff2imgs
+[
+.B \-d[ivided]
+]
+.I infile1
+.I infile2
+.I outfile
+[
+.BI \-t \ threshfactor
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B diff2imgs
+subtracts 2 ANALYZE or ECAT images on a per pixel basis after normalizing them.
+Performs outfile = infile1 - infile2 on normalized infile1 and infile2.
+With -d option performs outfile = 1000*(infile1 - infile2)/infile2.
+
+Normalization is performed by thresholding each image to greater then
+threshfactor of peak and multipling by 1000/mean to set mean to 1000.
+.SH OPTIONS
+.TP
+.B \-d
+divide subtracted results by infile2
+.TP
+.I infile1
+input ANALYZE/ECAT file name with or without .img extension
+.TP
+.I infile2
+input ANALYZE/ECAT file name with or without .img extension
+.TP
+.I outfile
+output ANALYZE/ECAT file name with or without .img extension.
+ANALYZE or ECAT file type defaults to the same as infile1.
+.TP
+.BI \-t \ threshfactor
+factor of peak to threshold image at \- defaults to 0.4
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR add2imgs (1),
+.BR addimgs (1),
+.BR ecat2analyze (1),
+.BR cnuintro (3)

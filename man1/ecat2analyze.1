@@ -1,0 +1,106 @@
+.\" @(#)ecat2analyze.1;
+.TH ECAT2ANALYZE 1 "2 August 1994" "CNU Tools" "CNU Tools"
+.SH NAME
+ecat2analyze \- ECAT to ANALYZE file conversion
+.SH SYNOPSIS
+.PD 0
+.B ecat2analyze
+.I infile
+.I outfile
+[
+.B \-noflip
+]
+[
+.B \-noscale
+]
+.LP
+[
+.B \-short
+|
+.B \-uchar
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.BI \-xb \ xbeg
+]
+[
+.BI \-xe \ xend
+]
+[
+.BI \-yb \ ybeg
+]
+[
+.BI \-ye \ yend
+]
+.LP
+[
+.BI \-zb \ zbeg
+]
+[
+.BI \-ze \ zend
+]
+[
+.BI \-ib \ ibeg
+]
+[
+.BI \-ie \ iend
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B ecat2analyze
+converts from ECAT file format to ANALYZE file format.  The maximum of
+the image is scaled to fit the output type.  Negative values are set
+to zero for unsigned output types.  The default output type is short.
+By default the rows(y direction) are flipped for correct
+interpretation of anterior and posterior when displayed by ANALYZE.
+.SH OPTIONS
+.TP
+.I infile
+input ECAT file name with or without .img extension
+.TP
+.I outfile
+output ANALYZE file name with or without .img
+.TP
+.B \-frame  first[,last]
+first and last frame numbers to grab from ECAT file
+.TP
+.B \-noflip
+do not flip frame rows
+.TP
+.B \-noscale
+do not scale image to fit maximum range into output type.  Values
+outside the range of the output type will be lost
+.TP
+.B \-short
+output data of type short
+.TP
+.B \-uchar
+output data of type unsigned character
+.TP
+.B \-int
+output data of type integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.I xbeg, ybeg, zbeg, ibeg
+Beginning location of region to convert.
+Values not specified default to input image origin.
+.TP
+.I xend, yend, zend, iend
+Ending location of region to convert.
+Values not specified default to input image end.
+.SH "SEE ALSO"
+.BR ecatheader (1),
+.BR brainextents (1),
+.BR cnuintro (3)

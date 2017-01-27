@@ -1,0 +1,138 @@
+.\" @(#)convertto1d.1;
+.TH CONVERTTO1D 1 "16 January 2003" "CNU Tools" "CNU Tools"
+.SH NAME
+convertto1d \- converts an image to 1 dimension or the inverse
+.SH SYNOPSIS
+.PD 0
+.B convertto1d
+.I infile
+.I outfile
+.LP
+[
+.B \-invert
+[
+.BI \-dim \ x,y,z,i
+]
+]
+[
+.BI \-tf \ template_file
+[
+.B \-iexcempt
+|
+.B \-irepeat
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B convertto1d
+converts an image to 1 dimensional by collapsing across all dimensions and possibly
+keeping only voxels designated by a template.  Can also perform the inverse which
+requires the original dimensions or template.  Note - single dimension may be large
+and require outputing in sdt format.
+.SH OPTIONS
+.TP
+.I infile
+input file name
+.TP
+.I outfile
+output file name
+.TP
+.B \-invert
+invert the process creating a multidimensional from a single dimension file.
+Requires the desired output size specified as -dim or the original template.
+.TP
+.BI \-dim \ x,y,z,i
+dimension of output when inverting from 1 dimensional to multidimensional with
+no template file
+.TP
+.BI \-tf \ template_file
+template file that selects the pixels used for the conversion
+.TP
+.B \-iexcempt
+do not collapse across the i dimension
+.TP
+.B \-irepeat
+repeat the 3 dimensional template for each i dimension
+
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format
+(defaults to input file format)
+(limits single dimension to 32768)
+.TP
+.B \-nifti
+output file in NIFTI format
+(limits single dimension to 32768)
+.TP
+.B \-ecat
+output file in ECAT format
+(limits single dimension to 32768)
+.TP
+.B \-ecat7
+output file in ECAT7 format
+(limits single dimension to 32768)
+.TP
+.B \-dicom
+output file in DICOM format
+(limits single dimension to ?)
+.TP
+.B \-sdt
+output file in SDT format
+(can handle any size single dimension)
+.SH "SEE ALSO"
+.BR cnuintro (3)

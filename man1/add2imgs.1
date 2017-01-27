@@ -1,0 +1,115 @@
+.\" @(#)add2imgs.1;
+.TH ADD2IMGS 1 "13 July 2001" "CNU Tools" "CNU Tools"
+.SH NAME
+add2imgs \- adds 2 data images
+.SH SYNOPSIS
+.B add2imgs
+.I infile1
+.I infile2
+.I outfile
+[
+.BI \-s1 \ scale1
+]
+[
+.BI \-s2 \ scale2
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.SH DESCRIPTION
+.LP
+.B add2imgs
+add 2 ANALYZE or ECAT images.
+.SH OPTIONS
+.TP
+.I infile1
+input ANALYZE/ECAT file name with or without .img extension
+.TP
+.I infile2
+input ANALYZE/ECAT file name with or without .img extension
+.TP
+.I outfile
+output ANALYZE/ECAT file name with or without .img extension
+ANALYZE or ECAT file type defaults to the same is infile1.
+.TP
+.BI \-s1 \ scale1
+factor to multiply image 1 pixels by before adding
+.TP
+.BI \-s2 \ scale2
+factor to multiply image 2 pixels by before adding
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR addimgs (1),
+.BR diff2imgs (1),
+.BR ecat2analyze (1),
+.BR cnuintro (3)

@@ -1,0 +1,114 @@
+.\" @(#)fftfilter.1;
+.TH FFTFILTER 1 "25 June 1997" "CNU Tools" "CNU Tools"
+.SH NAME
+fftfilter \- utilizes fft to perform average or guassian filtering
+.SH SYNOPSIS
+.PD 0
+.B fftfilter
+.I infile
+.I outfile
+.LP
+[
+.BI \-avg \ size
+]
+[
+.BI \-gs \ stddev
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B fftfilter
+utilizes fft to perform average or guassian filtering.  Currently only within
+plane filtering is done.
+.SH OPTIONS
+.TP
+.I infile
+input file name with or without file type extension(e.g., ".img")
+.TP
+.I outfile
+output file name with or without file type extension(e.g., ".img")
+.TP
+.BI \-avg \ size
+size of averaging filter
+.TP
+.BI \-gs \ stddev
+standard deviation for gaussian filter
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR filterimgs (1),
+.BR avgimgs (1),
+.BR ecat2analyze (1),
+.BR cnuintro (3)

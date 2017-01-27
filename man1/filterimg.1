@@ -1,0 +1,148 @@
+.\" @(#)filterimg.1;
+.TH FILTERIMG 1 "22 March 1994" "CNU Tools" "CNU Tools"
+.SH NAME
+filterimg \- cubic(NxNxN) or box(XxYxZ) mean lowpass filter or gradient filter
+.SH SYNOPSIS
+.PD 0
+.B filterimg
+.I infile
+.I outfile
+.LP
+[
+.BI \-c \ cubesize
+]
+[
+.BI \-x \ x_size
+]
+[
+.BI \-y \ y_size
+]
+[
+.BI \-z \ z_size
+]
+.LP
+[
+.B \-gradmxyz
+|
+.B \-gradmmxyz
+|
+.B \-gradmxy
+|
+.B \-gradmmxy
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B filterimg
+performs cubic(NxNxN) or box(XxYxZ) mean lowpass filter
+or a gradient filter on ANALYZE or Ecat images
+.SH OPTIONS
+.TP
+.I infile
+input ANALYZE file name with or without .img extension
+.TP
+.I outfile
+output ANALYZE file name with or without .img extension
+.TP
+.BI \-c \ cubesize
+size of filter cube (defaults to N=3)
+.TP
+.BI \-x \ x_size
+X size of box for performing non-cubic filtering (defaults to X=3)
+.TP
+.BI \-y \ y_size
+Y size of box for performing non-cubic filtering (defaults to Y=3)
+.TP
+.BI \-z \ z_size
+Z size of box for performing non-cubic filtering (defaults to Z=3)
+.TP
+.B \-gradmxyz
+perform magnitude of gradient filtering in x, y, and z directions
+.TP
+.B \-gradmmxyz
+perform maximum magnitude of gradient filtering in x, y, and z directions
+.TP
+.B \-gradmxy
+perform magnitude of gradient filtering in x and y directions
+.TP
+.B \-gradmmxy
+perform maximum magnitude of gradient filtering in x and y directions
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR diff2imgs (1),
+.BR avgimgs (1),
+.BR ecat2analyze (1),
+.BR cnuintro (3)

@@ -1,0 +1,316 @@
+.\" @(#)roistats.1;
+.TH ROISTATS 1 "18 December 2000" "CNU Tools" "CNU Tools"
+.SH NAME
+roistats \- region of interest statistics
+.SH SYNOPSIS
+.PD 0
+.B roistats
+.I infile
+[
+.B -q
+]
+[
+.BI \-o \ templated_outfile
+]
+.LP
+[
+.B \-or
+]
+.LP
+[
+.BI \-b \ xorig,yorig,zorig,xend,yend,zend
+]
+.LP
+[
+.BI \-bc \ xcenter,ycenter,zcenter,xlength,ylength,zlength
+]
+.LP
+[
+.BI \-c \ xcenter,ycenter,zcenter,radius
+]
+.LP
+[
+.BI \-e \ xcenter,ycenter,zcenter,xlength,ylength,zlength
+]
+.LP
+[
+.BI \-irange \ ibegin,iend
+]
+.LP
+[
+.BI \-tf \ template_file
+]
+.LP
+[
+.BI \-ttfn \ threshold,template_file
+]
+.LP
+[
+.BI \-tmmtfn \ minthresh,maxthresh,template_file
+]
+.LP
+[
+.BI \-tp \ threshold_percent
+] [
+.BI \-tpn \ threshold_percent
+]
+.LP
+[
+.BI \-t \ threshold
+] [
+.BI \-tn \ threshold
+]
+.LP
+[
+.BI \-topn \ N
+]
+[
+.BI \-bottomn \ N
+]
+.LP
+[
+.B \-min
+][
+.B \-minloc
+][
+.B \-max
+][
+.B \-maxloc
+]
+.LP
+[
+.B \-mean
+][
+.B \-npixels
+][
+.B \-sum
+][
+.B \-sumsqr
+][
+.B \-cm
+]
+.LP
+[
+.B \-var
+][
+.B \-stddev
+][
+.B \-adev
+]
+.LP
+[
+.B \-notext
+][
+.B \-scientific
+][
+.BI \-precision \ digits
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B roistats
+calculates statistics over a region of interest(ROI) defined by a box,
+sphere, ellipsoid, template file, or thershold. More then one ROI may
+be specified and they are anded together to form a new ROI that covers
+areas only common to all.  When the input image contains more then one
+frame (i-dimension) the shapes are duplicated for all the frames
+unless an i range is specified.  Statistics calculated are maximum,
+minimum, mean, variance, standard deviation, mean absolute deviation
+and center of mass.  Variance, standard deviation and mean absolute
+deviation are calculated by a two-pass algorithm to reduce round off
+error.  With one or more statistics flags such as "-mean" only the
+flagged values are output.  These flags along with "-notext" are
+useful in generating inputs to other routines.  This routine can also
+be used to get single pixel values by specifing a sphere (-c) radius
+of zero.
+.LP
+Note \- Center of mass calculations include both positive and negative
+pixels within the region of interest.  For calculations with large
+number of negative or positive outlyers contributing it may be worth
+thresholding the region of interest to contain just positive values
+(ie. -tn 0).
+.SH OPTIONS
+.TP
+.I infile
+input image file name with or without .img extension
+.TP
+.B \-q
+quantify output values by the image word resolution.  No affect on
+original ecat file type because it has a word resolution that varies
+between planes which requires quantifying on read and keeping internal
+representation as quantified float values.
+.TP
+.BI \-o \ templated_outfile
+optional output file with points outside the ROI zeroed and
+points inside set to the input image values. Corresponds to data used
+to calculate stats.
+.TP
+.B \-or
+or together templates requiring only one template to pass at a voxel
+to be included in the stats instead of default(ending together)
+requiring all templates to pass
+.TP
+.BI \-b \ xorig,yorig,zorig,xend,yend,zend
+bounds in pixel coordinates describing a box area
+to calculate the statistic over.
+.TP
+.BI \-bc \ xcenter,ycenter,zcenter,xlength,ylength,zlength
+centroid and size in pixel coordinates describing a box area
+to calculate the statistic over.
+.TP
+.BI \-c \ xcenter,ycenter,zcenter,radius
+centroid and radius in pixel coordinates describing a spherical area
+to calculate the statistic over.
+.TP
+.BI -e \ xcenter,ycenter,zcenter,xlength,ylength,zlength
+centroid and major axis lengths in pixel coordinates describing a
+spherical area to calculate the statistic over.
+.TP
+.BI -irange \ ibegin,iend
+range of i dimensions to duplicate shapes into when calculating statistics.
+Defaults to all i dimensions.
+.TP
+.BI \-tf \ template_file
+file containing template image with positive values indicating pixels to
+include in the statistics
+.TP
+.BI \-ttfn \ threshold,template_file
+threshold and a file containing a template image with values above threshold
+indicating voxels to include in the statistics
+.TP
+.BI \-tmmtfn \ minthresh,maxthresh,template_file
+.I template_file
+with values above
+.I minthresh
+and below
+.I maxthresh
+indicating voxels to include in the statistics
+.TP
+.BI \-tp \ threshold_percent
+percent of input image maximum to use as threshold for determining
+pixels included in the statistics. The template is built as noted for
+threshold \-t option.
+.TP
+.BI \-tpn \ threshold_percent
+percent of input image maximum to use as threshold for determining
+pixels included in the statistics. The template is built as noted for
+threshold \-tn option.
+.TP
+.BI \-t \ threshold
+threshold to use for determining pixels included in the statistics.
+Note \- a template is built by inward scanning in x and y until
+values are greater or equal to thershold and this template defines
+the pixels to include in the statistics. See templateimg.
+.TP
+.BI \-tn \ threshold
+threshold to use for determining pixels included in the statistics.
+Note \- only pixels at or above the threshold are included with no
+filling.
+.TP
+.BI \-topn \ N
+use only N top(maximum value) voxels in the statistics.
+Note \- unless or-ing together templates (i.e. "-or" flag) all previously listed
+templates reduce voxels included in the search for top voxels. Unlike most templates
+order matters for this option.
+.TP
+.BI \-bottomn \ N
+use only N bottom(minimum value) voxels in the statistics.
+Note \- unless or-ing together templates (i.e. "-or" flag) all previously listed
+templates reduce voxels included in the search for bottom voxels. Unlike most templates
+order matters for this option.
+.TP
+.B \-scientific
+print number values in scientific format
+.TP
+.BI \-precision \ digits
+print numbers with
+.I digits
+precision
+.TP
+.B \-min \-minloc \-max \-maxloc \-mean \-npixels \-sum \-sumsqr \-var \-stddev \-adev \-cm
+these flags specify which statistics to print.  Defaults to all
+statistics when none are specified.
+.TP
+.B \-notext
+turns off output annotation
+.TP
+.B \-uchar
+output data of type unsigned character(default)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type usigned short
+.TP
+.B \-short
+output data of type short
+.TP
+.B \-uint
+output data of type usigned integer
+.TP
+.B \-int
+output data of type integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format(defaults to input file format)
+.TP
+.B \-ecat
+output file in ECAT format(defaults to input file format)
+.TP
+.B \-ecat7
+output file in ECAT7 format(defaults to input file format)
+.TP
+.B \-dicom
+output file in DICOM format(defaults to input file format)
+.TP
+.B \-sdt
+output file in SDT format(defaults to input file format)
+.SH "SEE ALSO"
+.BR cnuintro (1),
+.BR bldtemplate (1),
+.BR templateimg (1),
+.BR scaleimg (1),
+.BR bldshape (1)
+

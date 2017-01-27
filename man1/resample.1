@@ -1,0 +1,79 @@
+.\" @(#)resample.1;
+.TH RESAMPLE 1 "30 December 1994" "CNU Tools" "CNU Tools"
+.SH NAME
+resample \- resamples an image in x, y, and z with nearest pixel
+sampling
+.SH SYNOPSIS
+.B resample
+.PD 0
+.I infile
+.I outfile
+[
+.B \-interpolate
+]
+.LP
+[
+.BI \-xf \ x_factor
+|
+.BI \-xd \ x_outdim
+|
+.BI \-xr \ x_outres
+]
+.LP
+[
+.BI \-yf \ y_factor
+|
+.BI \-yd \ y_outdim
+|
+.BI \-yr \ y_outres
+]
+.LP
+[
+.BI \-zf \ z_factor
+|
+.BI \-zd \ z_outdim
+|
+.BI \-zr \ z_outres
+]
+.LP
+[
+.BI \-if \ i_factor
+|
+.BI \-id \ i_outdim
+|
+.BI \-ir \ i_outres
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B resample
+resamples an ANALYZE or ECAT image with nearest pixel sampling.
+.SH OPTIONS
+.TP
+.I infile
+input ANALYZE or ECAT file name with or without .img extension
+.TP
+.I outfile
+output ANALYZE/ECAT file name with or without .img extension
+.TP
+.B -interpolate
+apply linear interpolation instead of nearest pixel sampling
+(currently works only for z resampling)
+.TP
+.I x_factor, y_factor, z_factor, i_factor
+factor to scale the resolution in each dimension by
+(magnitudes > 1 decrease size and magnitudes < 1 increase size)
+.TP
+.I x_outdim, y_outdim, z_outdim, i_outdim
+desired output dimensions
+(factors set to achieve the given dimension from input dimensions)
+.TP
+.I x_outres, y_outres, z_outres, i_outres
+desired output resolutions
+(factors set to achieve the given resolutions from input resolutions)
+.SH "SEE ALSO"
+.BR typeconvert(1),
+.BR diff2imgs (1),
+.BR avgimgs (1),
+.BR filterimgs (1),
+.BR cnuintro (3)

@@ -1,0 +1,112 @@
+.\" @(#)connectedregion.1;
+.TH CONNECTEDREGION 1 "18 October 1998" "CNU Tools" "CNU Tools"
+.SH NAME
+connectedregion \- define regions of connected pixels
+.SH SYNOPSIS
+.B connectedregion
+.PD 0
+.I infile
+[
+.I outfile
+]
+[
+.B \-stats
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B connectedregion
+labels non-zero pixels with unique region numbers that are shared only with
+connected pixels.  Pixels are connected if there is a path following
+adjacent non-zero pixels between them.  Adjacency is defined to include all
+neighbors (ie. 27 neighbor connectivity).
+.SH OPTIONS
+.TP
+.I infile
+name of input image file
+.TP
+.I outfile
+name of output image file with each voxel assigned a number representing
+the region it is part of or zero if the corresponding input voxel was zero
+.TP
+.B \-stats
+output statistics on each region including label, pixel count, center of mass
+and minimum and maximum locations included in region
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR scaleimg(1),
+.BR cnuintro(3)
+

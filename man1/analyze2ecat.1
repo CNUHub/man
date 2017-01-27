@@ -1,0 +1,57 @@
+.\" @(#)analyze2ecat.1;
+.TH ANALYZE2ECAT 1 "6 March 1996" "CNU Tools" "CNU Tools"
+.SH NAME
+analyze2ecat \- ANALYZE to ECAT file conversion
+.SH SYNOPSIS
+.B analyze2ecat
+.I infile
+.I outfile
+[
+.B \-noflip
+]
+[
+.B \-short
+|
+.B \-uchar
+|
+.B \-int
+|
+.B \-float
+]
+[
+.B \-debug
+]
+.SH DESCRIPTION
+.LP
+.B analyze2ecat
+converts from ANALYZE file format to ECAT file format
+.SH OPTIONS
+.TP
+.I infile
+input ANALYZE file name with or without .img
+.TP
+.I outfile
+output ECAT file name with or without .img extension
+.TP
+.B \-noflip
+do not flip frame rows
+.TP
+.B \-short
+output data of type short
+.TP
+.B \-uchar
+output data of type unsigned character
+.TP
+.B \-int
+output data of type integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-debug
+output debug information(mainly header info) to standard out
+.SH "SEE ALSO"
+.BR ecat2analyze (1),
+.BR ecatheader (1),
+.BR analyzeheader (1),
+.BR cnuintro (3)

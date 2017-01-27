@@ -1,0 +1,151 @@
+.\" @(#)multiimgmath.1;
+.TH MULTIIMGMATH 1 "16 January 2003" "CNU Tools" "CNU Tools"
+.SH NAME
+multiimgmath \- multiple image math functions
+.SH SYNOPSIS
+.PD 0
+.B multiimgmath
+.BI \-list \ listfile
+|
+.I infile1
+[
+.I infile2
+[
+.I infile3
+[...]
+]
+]
+.LP
+[
+.B \-sum
+|
+.B \-avg
+|
+.B \-median
+|
+.B \-min
+|
+.B \-max
+]
+.LP
+[
+.B \-across_idim
+]
+.BI \-o \ outfile
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B multiimgmath
+calculates the sum, average, median, minimum, or maximumn at each
+voxel across multiple images.
+.SH OPTIONS
+.TP
+.BI -list \ listfile
+file containing a list of input image file names.
+One file name per line.  Lines
+beginning with "#" are ignored as comment lines.
+.TP
+.I infile1 infile2 infile3 ...
+input image file names.  Not compatible with listfile.
+.TP
+.B \-sum
+calculate sum at each voxel
+.TP
+.B \-avg
+calculate average at each voxel
+.TP
+.B \-median
+calculate median at each voxel
+.TP
+.B \-min
+calculate minumum at each voxel
+.TP
+.B \-max
+calculate maximum at each voxel
+.TP
+.B -across_idim
+calculate across the i dimension of a single file instead of across multiple files.
+.TP
+.BI -o \ outfile
+output file name with or without .img extension. Output file type depends
+on type of first input image or output type selected.
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR imgmath (1),
+.BR pcorrelate (1),
+.BR ttestimgs (1),
+.BR pixelstats (1),
+.BR cnuintro (3)

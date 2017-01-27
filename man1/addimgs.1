@@ -1,0 +1,148 @@
+.\" @(#)addimgs.1;
+.TH ADDIMGS 1 "13 July 2001" "CNU Tools" "CNU Tools"
+.SH NAME
+addimgs \- adds multiple data images
+.SH SYNOPSIS
+.PD 0
+.B addimgs
+.I infile1
+[
+.I infile2
+[
+.I infile3
+[...]
+]
+]
+.BI \-o \ outfile
+.LP
+[
+.B \-t
+|
+.B \-td
+.I templatefile1
+[
+.I templatefile2
+[...]
+]
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B addimgs
+sums data images.
+Also allows averaging and templating as noted below.
+.TP
+.B Note
+\- The output type defaults to largest input type.
+ANALYZE output is truncated to fit output type without scaling.
+ECAT output is scaled because the quantification factor is more
+rigidly implemented.
+.SH OPTIONS
+.TP
+.I infile1 infile2 infile3 ...
+file names of images to be added with or without .img.
+Requires at least one input file. All arguments not recognized
+as other options and prior to -t or -td option are treated as
+input file names.
+.TP
+.BI -o \ outfile
+output file name with or without file type extension (i.e. ".img").
+.TP
+.B \-t
+treat any further unrecognized arguments as templates to be
+combined and used on the added images. The templates
+are anded together in that only pixels that pass all templates are
+set to the added pixel values. Other pixels default to 0.
+.TP
+.B \-td
+treat any further unrecognized arguments as templates to be
+added and used to divide the added images.
+Pixels where the template sum is zero default to 0.
+This performs a weighted average based on how many input pixels
+contribute to the output pixel. Not compatible with -avg option.
+Images should be templated before adding to remove
+contributions from pixels outside the templates.
+.TP
+.I templatefile1 templatefile2 ...
+file names of templates to be applied to added image. All arguments
+not recognized as other options followin -t or -td are treated
+as templates.
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR add2imgs (1),
+.BR divideimgs (1),
+.BR diff2imgs (1),
+.BR cnuintro (3)

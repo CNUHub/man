@@ -1,0 +1,41 @@
+.\" @(#)ecatheaderedit.1;
+.TH ECATHEADEREDIT 1 "16 January 2003" "CNU Tools" "CNU Tools"
+.SH NAME
+ecatheaderedit \- allows editing ecat header files
+.SH SYNOPSIS
+.PD 0
+.B ecatheaderedit
+.I infile1
+.I outfile
+.LP
+[
+.BI \-ed \ editor \ | \ \- \ | \ none
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B ecatheaderedit
+allows interactive or script editting of ECAT header files.
+Either an text editor is invoked on a tmp file containing ECAT header values
+in the form printed by the program ecatheader or lines may be input directly
+from standard in.  The lines edited or input directly must correspond to the format
+output by ecatheader.  Values not typed in when reading from standard input or
+deleted while editing will keep their original values.  A full header with values
+changed by the editor or standard in is written to the outfile when the editor is
+quit or standard input is ended (as with control-d).
+.SH OPTIONS
+.TP
+.I infile1
+input file name with or without .hdr extension
+.TP
+.I \ outfile
+output file name with or without .hdr extension
+.TP
+.BI \-ed \ editor \ | \ \- \ | \ none
+name of editor such as vi or emacs or \- to read from standard input
+.SH "SEE ALSO"
+.BR ecatheader (1),
+.BR cnuintro (3)
+
+
+

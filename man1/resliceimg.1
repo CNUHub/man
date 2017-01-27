@@ -1,0 +1,211 @@
+.\" @(#)resliceimg.1;
+.TH RESLICEIMG 1 "27 Febuary 2001" "CNU Tools" "CNU Tools"
+.SH NAME
+resliceimg \- reslices an image in x, y, and z with nearest pixel
+or linear interpolation sampling. 
+.SH SYNOPSIS
+.B resliceimg
+.PD 0
+.I infile
+.I outfile
+[
+.B \-interpolate
+]
+.LP
+[
+[
+.BI \-t \ transform_string
+]
+[
+.B -invert
+]
+]
+.LP
+[
+.BI \-xf \ x_factor
+|
+.BI \-xr \ x_outres
+]
+.LP
+[
+.BI \-yf \ y_factor
+|
+.BI \-yr \ y_outres
+]
+.LP
+[
+.BI \-zf \ z_factor
+|
+.BI \-zr \ z_outres
+]
+.LP
+[
+.BI \-if \ i_factor
+|
+.BI \-ir \ i_outres
+]
+.LP
+[
+.BI \-transform_origin \ x,y,z
+]
+.LP
+[
+.BI \-np \ number_of_planes_to_buffer
+]
+.LP
+[
+.B \-resize
+]
+.LP
+[
+.BI \-outsize \ xdim,ydim,zdim
+]
+.LP
+[
+.B \-uchar
+|
+.B \-char
+|
+.B \-ushort
+|
+.B \-short
+|
+.B \-uint
+|
+.B \-int
+|
+.B \-float
+|
+.B \-double
+]
+.LP
+[
+.B \-analyze
+|
+.B \-nifti
+|
+.B \-ecat
+|
+.B \-ecat7
+|
+.B \-dicom
+|
+.B \-sdt
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B resliceimg
+reslices an ANALYZE or ECAT image in x, y, and z with nearest pixel
+or linear interpolation sampling.  The reslicing may be specified as
+scaling factors, desired output resolution or as a transform matrix.
+The output image defaults to the same size as the input unless -resize
+or -outsize options are used.
+.SH OPTIONS
+.TP
+.I infile
+input ANALYZE or ECAT file name with or without .img extension
+.TP
+.I outfile
+output ANALYZE/ECAT file name with or without .img extension
+.TP
+.B \-interpolate
+apply linear interpolation instead of nearest pixel sampling
+.TP
+.I transform_string
+transformation string describing rotations, translations and scales to
+derive output voxel locations from input voxel locations.  The string
+is interpreted as a list of single degree options applied in order
+from right to left.  Each single degree option is designated by a
+capital letter representing the type ("R" for rotation in radians, "D"
+for rotation in degrees, "T" for translation in meters, "P" for
+translation in pixels and "S" for scale factor) followed by a small
+letter representing the axis (x, y, or z), a floating point value, and
+a capital letter "X" as a seperator.  A capital "X" must also occur at
+the start of the string.  As an example
+"XRx.3839724XDz-15XPy-1.4XTz0.003X" represents a translation of 3 mm
+along the z-axis, followed by a translation of -1.4 pixels along the y
+axis, followed by a rotation of -15 degrees around the z-axis, and
+lastly a rotation of .3839724 radians around the x axis.
+.TP
+.B \-invert
+apply the inverse of the matrix designated by transform_string.
+.TP
+.I x_factor, y_factor, z_factor, i_factor
+factor to scale the resolution in each dimension by
+(magnitudes > 1 decrease size and magnitudes < 1 increase size)
+.TP
+.I x_outres, y_outres, z_outres, i_outres
+desired output resolutions
+(factors set to achieve the given resolutions from input resolutions)
+.TP
+.BI \-transform_origin \ x,y,z
+origin location on input image to base transform from in voxels.  May
+designate subvoxel locations with floating point numbers.  Defaults to
+the center of the input image.
+.TP
+.I number_of_planes_to_buffer
+number of z planes the program will buffer.  When interpolating between
+planes or rotating around x or y axis, increasing this number may increase
+speed by reducing the need to re-read planes from the input file.  Defaults to
+2.
+.TP
+.B \-resize
+set the size of the output image to that which can contain every pixel
+mapped from the input image.  Normally the output size is set to the
+same as the input which may produce clipping in rotated or zoomed
+images. This feature may shift the output origin.  Ignored if -outsize
+option given.
+.TP
+.I xdim, ydim, zdim
+Dimensions for output file.  Keeps the the notion of output origin as
+dictated by input image origin and shifts.  Overides -resize option.
+.TP
+.B \-uchar
+output data of type unsigned character(defaults to input data type)
+.TP
+.B \-char
+output data of type signed character
+.TP
+.B \-ushort
+output data of type unsigned short
+.TP
+.B \-short
+output data of type signed short
+.TP
+.B \-uint
+output data of type unsigned integer
+.TP
+.B \-int
+output data of type signed integer
+.TP
+.B \-float
+output data of type float
+.TP
+.B \-double
+output data of type double
+.TP
+.B \-analyze
+output file in ANALYZE format(defaults to input file format)
+.TP
+.B \-nifti
+output file in NIFTI format
+.TP
+.B \-ecat
+output file in ECAT format
+.TP
+.B \-ecat7
+output file in ECAT7 format
+.TP
+.B \-dicom
+output file in DICOM format
+.TP
+.B \-sdt
+output file in SDT format
+.SH "SEE ALSO"
+.BR resample(1),
+.BR typeconvert(1),
+.BR diff2imgs (1),
+.BR avgimgs (1),
+.BR filterimgs (1),
+.BR cnuintro (3)

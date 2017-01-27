@@ -1,0 +1,51 @@
+.\" @(#)analyzeheaderedit.1;
+.TH ANALYZEHEADEREDIT 1 "16 January 2003" "CNU Tools" "CNU Tools"
+.SH NAME
+analyzeheaderedit \- allows editing analyze header files
+.SH SYNOPSIS
+.PD 0
+.B analyzeheaderedit
+.I infile1
+[
+.B \-textin
+]
+.I outfile
+.LP
+[
+.BI \-ed \ editor \ | \ \- \ | \ none
+]
+.PD
+.SH DESCRIPTION
+.LP
+.B analyzeheaderedit
+allows interactive or script editting of ANALYZE header files.
+Either an text editor is invoked on a tmp file containing ANALYZE header values
+in the form printed by the program analyzeheader or lines may be input directly
+from standard in.  The lines edited or input directly must correspond to the format
+output by analyzeheader.  Values not typed in when reading from standard input or
+deleted while editing will keep their original values.  A full header with values
+changed by the editor or standard in is written to the outfile when the editor is
+quit or standard input is ended (as with control-d).
+.SH OPTIONS
+.TP
+.I infile1
+input file name with or without .hdr extension
+.TP
+.B \-textin
+this option reads the input file as a text file containing lines of the form
+output by analyzeheader and creates a binary analyze header file.
+This the main reason for the editor choice of none.
+.TP
+.I \ outfile
+output file name with or without .hdr extension
+.TP
+.BI \-ed \ editor \ | \ \- \ | \ none
+name of editor such as vi or emacs or \- to read from standard input or
+none to not invoke an editor
+(none being mainly for the \-textin option).
+.SH "SEE ALSO"
+.BR analyzeheader (1),
+.BR cnuintro (3)
+
+
+

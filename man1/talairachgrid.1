@@ -1,0 +1,54 @@
+.\" @(#)talairachgrid.1;
+.TH TALAIRACHGRID 1 "7 December 1994" "CNU Tools" "CNU Tools"
+.SH NAME
+talairachgrid \- draws a grid on a taliarach image
+.SH SYNOPSIS
+.B talairachgrid
+.I infile
+.I outfile
+[
+.B \-t[ransverse]
+]
+[
+.B \-s[sagital]
+]
+[
+.B \-c[oronal]
+]
+[
+.B \-yr[everse]
+]
+[
+.B \-zr[everse]
+]
+.SH DESCRIPTION
+.LP
+.B talairachgrid
+draws a talairach grid on a standard talaiarch image
+
+.SH OPTIONS
+.TP
+.I infile
+input image file name
+.TP
+.I outfile
+output image file name
+.TP
+.B \-t
+draw grid for transverse viewing
+.TP
+.B \-s
+draw grid for sagital viewing
+.TP
+.B \-c
+draw grid for coronal viewing
+.TP
+.B \-yr
+reverse y rows transposing notion of front and back
+.TP
+.B \-zr
+reverse z planes transposing notion of top and bottom
+
+.SH "SEE ALSO"
+.BR talairach (1),
+.BR cnuintro (3)
