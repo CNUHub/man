@@ -5,7 +5,10 @@ bldtemplate \- build template image
 .SH SYNOPSIS
 .nf
 \fBbldtemplate \fIinfile \fIoutfile
-\fR[\fB\-tp \fIthreshold_percent \fR| \fB-t \fIthreshold\fR]
+\fR[\fB\-tp \fIthreshold_percent \fR| \fB-t \fIthreshold\fR] \fR|
+\fB  \-hist \fR[\fB-hb \fIhistbins\fR] \fR[\fB-hf \fIhistsmoothsize\fR] \fR[\fB-hv\fR]
+\fR  [\fB-hmin \fIhistmin\fR] \fR[\fB-hmax \fIhistmax\fR]
+\fR  [\fB-hlr \fIhistlocalmintestradius\fR] \fR[\fB-hcofmr \fIhistcofmradius\fR] \fR]
 \fR[\fB\-nofill]
 \fR[\fB\-uchar \fR| \fB\-char \fR| \fB\-ushort \fR| \fB\-short \fR| \fB\-uint \fR| \fB\-int \fR| \fB\-float\fR] \fR[\fB\-analyze \fR| \fB\-ecat\fR]
 \fR[\fB\-analyze \fR| \fB\-nifti \fR| \fB\-ecat \fR| \fB\-ecat7 \fR| \fB\-dicom \fR| \fB\-sdt\fR]
@@ -28,6 +31,30 @@ percent of input image maximum to use as threshold (defaults to 40)
 .TP
 .BI \-t \ threshold
 pixel value of threshold (if unspecified set using threshold_precent)
+.TP
+.B \-hist
+find a threshold based on histogramming the data assuming it is bimodal with a minimum value dividing the modes. 
+.TP
+.BI \-hb \ histbins
+number of histogram bins
+.TP
+.BI \-hf \ histsmoothsize
+perform average filter of histsmoothsize bins accross histogram before seaching for histogram minimum
+.TP
+.B \-hv
+histogram verbose mode. Print out histgram information for info and debugging
+.TP
+.BI \-hmin \ histmin
+minimum range value for histogram
+.TP
+.BI \-hmax \ histmax
+maximum range value for histogram
+.TP
+.BI \-hlr \ histlocalmintestradius
+histogram local minimum has to be less then all bins this distance above and below current test location
+.TP
+.BI \-hcofmr \ histcofmradius
+threshold calculated from center of mass based on bins within this distance above and below the minimum value
 .TP
 .B \-nofill
 Threshold only. Will not preform the inward x and y filling

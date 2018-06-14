@@ -15,7 +15,21 @@ statimgchange \- statistical image change
 .BI \-pow \ power
 |
 .BI \-cunjunct \ power
+|
+.I \-t_to_prob
+|
+.I \-t_to_z
+|
+.I \-pcorr_to_t
+|
+.I \-pcorr_to_prob
 .LP
+.LP
+[
+.BI \-df \ df
+|
+.BI \-cnt \ countfile
+]
 [
 .B \-auto
 |
@@ -103,6 +117,24 @@ raise the image values to the given power
 convert z values to probabilities, raise the probabilities to the given power,
 and convert the reased probabilities back into z values.  Used for conjunction
 analysis where input z values are minimums across power number of images.
+.TP
+.B -t_to_prob
+convert the t values to probability
+.TP
+.B -t_to_z
+convert the t values to z statistics
+.TP
+.B -pcorr_to_t
+convert the Pearson's correlation values to t value
+.TP
+.B -pcorr_to_prob
+convert the Pearson's correlation values to probabilities
+.TP
+.BI -df \ df
+degrees of freedom needed to perform some conversions. When voxels may have different degrees of freedom use countfile instead
+.TP
+.BI -cnt \ countfile
+countfile allows different degrees of freedom at each voxel. Degrees of freedom calculated as 2 less then the count value at each voxel.
 .TP
 .B \-auto
 automatically calculate scale factor to utilize full range of output

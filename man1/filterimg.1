@@ -32,6 +32,10 @@ filterimg \- cubic(NxNxN) or box(XxYxZ) mean lowpass filter or gradient filter
 ]
 .LP
 [
+.BI \-f \ factor
+]
+.LP
+[
 .B \-uchar
 |
 .B \-char
@@ -99,6 +103,9 @@ perform magnitude of gradient filtering in x and y directions
 .TP
 .B \-gradmmxy
 perform maximum magnitude of gradient filtering in x and y directions
+.TP
+.BI \-f \ factor
+apply this scale factor to every voxel
 .TP
 .B \-uchar
 output data of type unsigned character(defaults to input data type)

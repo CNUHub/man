@@ -51,6 +51,16 @@ ecat2analyze \- ECAT to ANALYZE file conversion
 [
 .BI \-ie \ iend
 ]
+.LP
+[
+.BI \-ltc \ ltc_fname
+]
+[
+.B \-debug
+]
+[
+.B \-noscale
+]
 .PD
 .SH DESCRIPTION
 .LP
@@ -100,6 +110,15 @@ Values not specified default to input image origin.
 .I xend, yend, zend, iend
 Ending location of region to convert.
 Values not specified default to input image end.
+.TP
+.I ltc_fname
+a linear transform constant input file that provides a different slope and translation for each plane of the image
+.TP
+.B \-debug
+output debugging info
+.TP
+.B \-noscale
+don't scale
 .SH "SEE ALSO"
 .BR ecatheader (1),
 .BR brainextents (1),

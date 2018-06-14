@@ -5,6 +5,8 @@ dicomheader \- DICOM file print header
 .SH SYNOPSIS
 .B dicomheader
 .I infile
+\fR[\fB\-help\fR]
+\fR[\fB\-terse \fR| \fB\-concise \fR| \fB\-brief \fR| \fB\-normal \fR| \fB\-lengthy \fR| \fB\-verbose \fR| \fB\-tedious\fR]
 .SH DESCRIPTION
 .LP
 .B dicomheader
@@ -13,6 +15,12 @@ prints header information from an DICOM file
 .TP
 .I infile
 input DICOM file name
+.TP
+.B \-help
+print command line options
+.TP
+\fB\-terse \fR| \fB\-concise \fR| \fB\-brief \fR| \fB\-normal \fR| \fB\-lengthy \fR| \fB\-verbose \fR| \fB\-tedious
+options to print more or less info from dicom header
 .SH "SEE ALSO"
 .BR analyzeheader (1),
 .BR ecatheader (1),

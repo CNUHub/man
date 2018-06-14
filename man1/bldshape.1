@@ -9,8 +9,12 @@ bldshape \- build shape
 \fR[ \fB\-b \fIxorig,yorig,zorig,xend,yend,zend \fR|
   \fB\-bc \fIxcenter,ycenter,zcenter,xlength,ylength,zlength \fR|
   \fB\-c \fIxcenter,ycenter,zcenter,radius \fR|
+  \fB\-cyl \fIicenter,jcenter,axis,radius \fR|
   \fB\-e \fIxcenter,ycenter,zcenter,xlength,ylength,zlength \fR|
+  \fB\-half \fIxpoint,ypoint,zpoint,xnormal,ynormal,znormal \fR|
+  \fB\-pts \fIpointlistfile \fR]
   \fB\-alt \fIax,ay,az,ai \fR]
+\fR[\fB\-irange \fIibegin,iend\fR]
 \fR[\fB\-fg \fIforeground_value\fR] \fR[\fB\-bg \fIbackground_value \fR| \fB\-bif\fR]
 \fR[\fB\-uchar \fR| \fB\-char \fR| \fB\-ushort \fR| \fB\-short \fR| \fB\-uint \fR| \fB\-int \fR| \fB\-float\fR] \fR[\fB\-analyze \fR| \fB\-ecat\fR]
 \fR[\fB\-analyze \fR| \fB\-nifti \fR| \fB\-ecat \fR| \fB\-ecat7 \fR| \fB\-dicom \fR| \fB\-sdt\fR]
@@ -46,13 +50,25 @@ to create.
 centroid and radius in pixel coordinates describing a spherical shape
 to create.
 .TP
+.BI \-cyl \ icenter,jcenter,axis,radius
+center, axis and radius in pixel describing a cylinder shape
+to create. The axis is either 0 for along x direction, 1 for
+along y axis, or defaults to along z axis.
+.TP
 .BI -e \ xcenter,ycenter,zcenter,xlength,ylength,zlength
 centroid and major axis lengths in pixel coordinates describing a
 spherical shape to create.
 .TP
+.BI -half \ xpoint,ypoint,zpoint,xnormal,ynormal,znormal
+point on a plane and normal to the plane defining a half space
+shape to create.
+.TP
 .BI -alt \ ax,ay,az,ai
 lengths in pixels between background and foreground value switching
 describing an alternating checkerboard pattern
+.TP
+.BI -irange \ ibegin,iend
+create shape in i indices from ibegin to iend
 .TP
 .B foreground_value
 value to assign to pixels inside the shape

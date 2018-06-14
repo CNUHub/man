@@ -14,6 +14,15 @@ niftiheaderedit \- allows editing nifti header files
 [
 .BI \-ed \ editor \ | \ \- \ | \ none
 ]
+[
+.BI \-xf \ x_factor
+]
+[
+.BI \-yf \ y_factor
+]
+[
+.BI \-zf \ z_factor
+]
 .PD
 .SH DESCRIPTION
 .LP
@@ -35,6 +44,15 @@ input file name with or without .nii extension
 this option reads the input file as a text file containing lines of the form
 output by niftiheader and creates a binary nifti header file.
 This the main reason for the editor choice of none.
+.TP
+.BI \-xf \ x_factor
+fix x pixdim resolution by x_factor
+.TP
+.BI \-yf \ y_factor
+fix x pixdim resolution by y_factor
+.TP
+.BI \-zf \ z_factor
+fix x pixdim resolution by z_factor
 .TP
 .I \ outfile
 output file name with or without .hdr extension

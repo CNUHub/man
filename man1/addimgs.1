@@ -25,6 +25,9 @@ addimgs \- adds multiple data images
 [...]
 ]
 ]
+[
+.B \-avg
+]
 .LP
 [
 .B \-uchar
@@ -99,6 +102,9 @@ contributions from pixels outside the templates.
 file names of templates to be applied to added image. All arguments
 not recognized as other options followin -t or -td are treated
 as templates.
+.TP
+.B \-avg
+divide sum by number of input files - not compatible with -td option
 .TP
 .B \-uchar
 output data of type unsigned character(defaults to input data type)
